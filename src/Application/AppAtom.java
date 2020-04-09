@@ -1,8 +1,9 @@
+package Application;
+
 import com.sun.syndication.feed.synd.SyndCategoryImpl;
 import com.sun.syndication.feed.synd.SyndContentImpl;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
-import com.sun.syndication.feed.synd.SyndLinkImpl;
 import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
 
@@ -10,7 +11,6 @@ import java.net.URL;
 import java.util.List;
 
 public class AppAtom {
-    @SuppressWarnings("unchecked")
 	public static void main(String[] args) throws Exception {
         String url = "https://www.sciencedaily.com/rss/all.xml";
         //http://www.france24.com/fr/actualites/rss
