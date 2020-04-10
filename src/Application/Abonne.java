@@ -1,5 +1,11 @@
 package Application;
 
+import com.sun.syndication.feed.synd.SyndCategoryImpl;
+import com.sun.syndication.feed.synd.SyndContentImpl;
+import com.sun.syndication.feed.synd.SyndEntry;
+import com.sun.syndication.feed.synd.SyndFeed;
+import com.sun.syndication.io.SyndFeedInput;
+import com.sun.syndication.io.XmlReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -187,4 +193,31 @@ public class Abonne {
 		return false;
 	}
 	
+	/**
+	 * La fonction checkFlux permet à un abonné de regarder les entrées du flux qu'il veut.
+	 * @param myFlux le flux qu'il souhaite regarder
+	 * @return les entrées du flux choisi
+	 */
+	public String checkFlux(Flux myFlux) {
+		return "toBeImplemented";
+	}
+	
+	/**
+	 * La fonction saveFlux permet à un abonné de sauvegarder son flux pour qu'il puisse le regarder plus tard.
+	 * @param myFlux le flux à sauvegarder
+	 * @return true si le flux a bien été sauvegardé, false sinon
+	 */
+	public boolean saveFlux(Flux myFlux) {
+		return false;
+	}
+	
+	/**
+	 * La fonction addFilter permet à un abonné d'ajouter un filtre à un flux pour filtrer les entrées
+	 * @param myFlux le flux à filtrer
+	 * @param myFilter le filtre à appliquer
+	 * @return true si le filtre a bien été appliqué, false sinon
+	 */
+	public boolean addFilterToFlux(Flux myFlux, Filtre myFilter) {
+		return false;
+	}
 }
