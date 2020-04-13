@@ -1,34 +1,38 @@
 package Application;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Entry {
 	// Vars //
 	private int id;
 	private static int count = 0;
 	private String titre;
-	private String categorie;
-	private String contenue;
-	private LocalDate datePublication;
+	private ArrayList<String> listeCategories;
+	private String description;
+	private ArrayList<String> listeContenues;
+	private Date datePublication;
 	
-	// Constructeur par défaut //
+	// Constructeur par dÃ©faut //
 	public Entry() {
 		count++;
 		id = count;
 		titre = "";
-		categorie = "";
-		contenue = "";
-		datePublication = LocalDate.now();
+		listeCategories = new ArrayList<String>();
+		description = "";
+		listeContenues = new ArrayList<String>();
+		datePublication = null;
 	}
 	
 	// Constructeur //
-	public Entry(String titre, String categorie, String contenue) {
+	public Entry(String titre, String description, Date date) {
 		count++;
 		this.id = count;
 		this.titre = titre;
-		this.categorie = categorie;
-		this.contenue = contenue;
-		this.datePublication = LocalDate.now();
+		this.listeCategories = new ArrayList<String>();
+		this.description = description;
+		this.listeContenues = new ArrayList<String>();
+		this.datePublication = date;
 	}
 	
 	//-------------------//
@@ -54,29 +58,54 @@ public class Entry {
 	}
 	
 	// Categorie //
-	public void setCategorie(String categorie) {
-		this.categorie = categorie;
+	public void setListeCategories(ArrayList<String> list) {
+		this.listeCategories = list;
 	}
 	
-	public String getCategorie() {
-		return this.categorie;
+	public ArrayList<String> getCategorie() {
+		return this.listeCategories;
+	}
+	
+	public void addCategorie(String categorie) {
+		listeCategories.add(categorie);
+	}
+	
+	public void delCategorie(String categorie) {
+		listeCategories.remove(categorie);
+	}
+	
+	// Description //
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getDescription() {
+		return this.description;
 	}
 	
 	// Contenue //
-	public void setContenue(String contenue) {
-		this.contenue = contenue;
+	public void setListeContenue(ArrayList<String> contenue) {
+		this.listeContenues = contenue;
 	}
 	
-	public String getContenue() {
-		return this.contenue;
+	public ArrayList<String> getListeContenue() {
+		return this.listeContenues;
+	}
+	
+	public void addContenue(String contenue) {
+		listeContenues.add(contenue);
+	}
+	
+	public void delContenue(String contenue) {
+		listeContenues.remove(contenue);
 	}
 	
 	// Date publication //
-	public void setDatePublication(LocalDate date) {
+	public void setDatePublication(Date date) {
 		this.datePublication = date;
 	}
 	
-	public LocalDate getDatePublication() {
+	public Date getDatePublication() {
 		return this.datePublication;
 	}
 	
@@ -88,13 +117,11 @@ public class Entry {
 	public String toString() {
 		return "ID: " + id +
 			   "\nTitre: " + titre +
-			   "\nCategorie: " + categorie +
-			   "\nContenue: " + contenue +
-			   "Date de publication: " + datePublication;
+			   "\nDate de publication: " + datePublication;
 	}
 	
 	// equals //
 	public boolean equals(Entry myEntry) {
-		return (id == myEntry.id) && (titre == myEntry.titre) && (categorie.equals(myEntry.categorie)) && (contenue.equals(myEntry.contenue)) && (datePublication == myEntry.datePublication);
+		return (id == myEntry.id) && (titre == myEntry.titre) && (datePublication == myEntry.datePublication);
 	}
 }

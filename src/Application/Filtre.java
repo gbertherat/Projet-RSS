@@ -12,7 +12,7 @@ public class Filtre {
 	private ArrayList<String> blacklist;
 	private ArrayList<Flux> listeFlux;
 	
-	// Constructeur par défaut //
+	// Constructeur par dÃ©faut //
 	public Filtre() {
 		count++;
 		id= count;

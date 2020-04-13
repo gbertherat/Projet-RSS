@@ -1,7 +1,17 @@
 package Application;
 
+import com.sun.syndication.feed.synd.SyndCategoryImpl;
+import com.sun.syndication.feed.synd.SyndContentImpl;
+import com.sun.syndication.feed.synd.SyndEntry;
+import com.sun.syndication.feed.synd.SyndFeed;
+import com.sun.syndication.io.SyndFeedInput;
+import com.sun.syndication.io.XmlReader;
+
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class Flux {
 	// Vars //
@@ -14,8 +24,9 @@ public class Flux {
 	private String localisation;
 	private ArrayList<Entry> listeEntrees;
 	private ArrayList<Abonne> listeAbonnes;
+	private static ArrayList<Flux> listeFlux = new ArrayList<>();
 	
-	// Constructeur par dÈfaut //
+	// Constructeur par d√©faut //
 	public Flux() {
 		count++;
 		ref = count;
@@ -26,6 +37,7 @@ public class Flux {
 		localisation = "";
 		listeEntrees = new ArrayList<Entry>();
 		listeAbonnes = new ArrayList<Abonne>();
+		listeFlux.add(this);
 	}
 	
 	// Constructeur //
@@ -39,6 +51,7 @@ public class Flux {
 		this.localisation = localisation;
 		this.listeEntrees = new ArrayList<Entry>();
 		this.listeAbonnes = new ArrayList<Abonne>();
+		listeFlux.add(this);
 	}
 	
 	//-------------------//
@@ -68,7 +81,7 @@ public class Flux {
 		this.url = url;
 	}
 	
-	public String getUrl(String url) {
+	public String getUrl() {
 		return this.url;
 	}
 	
@@ -99,7 +112,7 @@ public class Flux {
 		return this.localisation;
 	}
 	
-	// Liste entrÈes //
+	// Liste entr√©es //
 	public void setListeEntrees(ArrayList<Entry> list) {
 		this.listeEntrees = list;
 	}
@@ -116,7 +129,7 @@ public class Flux {
 		listeEntrees.remove(myEntry);
 	}
 	
-	// Liste abonnÈs //
+	// Liste abonn√©s //
 	public void setListeAbonnes(ArrayList<Abonne> list) {
 		this.listeAbonnes = list;
 	}
@@ -133,13 +146,30 @@ public class Flux {
 		listeAbonnes.remove(myAbonne);
 	}
 	
+	// Liste Flux //
+	public void setListeFlux(ArrayList<Flux> list) {
+		listeFlux = list;
+	}
+	
+	public static ArrayList<Flux> getListeFlux(){
+		return listeFlux;
+	}
+	
+	public void addFlux(Flux flux) {
+		listeFlux.add(flux);
+	}
+	
+	public void delFlux(Flux flux) {
+		listeFlux.remove(flux);
+	}
+	
 	//-----------//
 	/* FONCTIONS */
 	//-----------//
 	
 	// toString //
 	public String toString() {
-		return "RÈfÈrence: " + ref +
+		return "R√©f√©rence: " + ref +
 				"\nNom: " + nom +
 				"\nUrl: " + url +
 				"\nLangue: " + langue +
@@ -150,5 +180,27 @@ public class Flux {
 	// equals //
 	public boolean equals(Flux myFlux) {
 		return (ref == myFlux.ref) && (nom.equals(myFlux.nom)) && (url.equals(myFlux.url)) && (langue.equals(myFlux.langue)) && (dateAjout == myFlux.dateAjout) && (localisation.equals(myFlux.localisation));
+	}
+	
+	public void retrieveEntries() throws Exception {
+		URL feedUrl = new URL(url);
+        SyndFeedInput input = new SyndFeedInput();
+        SyndFeed feed = input.build(new XmlReader(feedUrl));
+        for (SyndEntry entry : (List<SyndEntry>) feed.getEntries()){
+        	 Entry newEntry = new Entry(entry.getTitle(), entry.getDescription().getValue(), entry.getPublishedDate());
+
+             for (SyndCategoryImpl category : (List<SyndCategoryImpl>) entry.getCategories()) {
+            	 newEntry.addCategorie(category.getName());
+             }
+             listeEntrees.add(newEntry);
+        }
+	}
+	
+	public static void main(String[] args) throws Exception {
+		Flux myFlux = new Flux("France24", "https://www.sciencedaily.com/rss/all.xml", "Fran√ßais", "");
+		Abonne myAbonne = new Abonne("Pierre", "San-nom", "email@mail.com", "Pierro", "123");
+		myAbonne.subToFlux(1);
+		myFlux.retrieveEntries();
+		System.out.print(myAbonne.checkFlux(myFlux) + "\n");
 	}
 }

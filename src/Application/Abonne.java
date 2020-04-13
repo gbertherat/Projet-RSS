@@ -1,13 +1,9 @@
 package Application;
 
-import com.sun.syndication.feed.synd.SyndCategoryImpl;
-import com.sun.syndication.feed.synd.SyndContentImpl;
-import com.sun.syndication.feed.synd.SyndEntry;
-import com.sun.syndication.feed.synd.SyndFeed;
-import com.sun.syndication.io.SyndFeedInput;
-import com.sun.syndication.io.XmlReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Abonne {
 	// Vars //
@@ -21,7 +17,7 @@ public class Abonne {
 	protected ArrayList<Flux> listeFlux;
 	protected ArrayList<String> listeContraintes;
 	
-	// Constructeur par dÈfaut //
+	// Constructeur par d√©faut //
 	public Abonne() {
 		count++;
 		id = count;
@@ -158,17 +154,20 @@ public class Abonne {
 	}
 	
 	/**
-	 * La fonction subToFlux permet ‡ un abonnÈ de s'abonner ‡ un flux gr‚ce ‡ l'ID du flux.
-	 * @param idFlux L'ID du Flux
-	 * @return true si l'abonnement s'est bien passÈ, false sinon.
+	 * La fonction subToFlux permet √† un abonn√© de s'abonner √† un flux gr√¢ce √† l'ID du flux.
+	 * @param refFlux L'ID du Flux
+	 * @return true si l'abonnement s'est bien pass√©, false sinon.
 	 */
-	public boolean subToFlux(int idFlux) {
-		Flux fluxSel;
-		Iterator<Flux> iteFlux = listeFlux.iterator();
-		while(iteFlux.hasNext()) {
-			fluxSel = iteFlux.next();
-			if(fluxSel.getRef() == idFlux) {
-				addFlux(fluxSel);
+	public boolean subToFlux(int refFlux) {
+		for(Flux subbedFlux: getListeFlux()) {
+			if(subbedFlux.getRef() == refFlux) {
+				return false;
+			}
+		}
+		
+		for(Flux myFlux : Flux.getListeFlux()) {
+			if(myFlux.getRef() == refFlux) {
+				listeFlux.add(myFlux);
 				return true;
 			}
 		}
@@ -176,17 +175,14 @@ public class Abonne {
 	}
 	
 	/**
-	 * La fonction unsubToFlux permet ‡ un abonnÈ de se dÈsabonner d'un flux gr‚ce ‡ l'ID du flux.
-	 * @param idFlux L'ID du Flux
-	 * @return true si le dÈsabonnement s'est bien passÈ, false sinon.
+	 * La fonction unsubToFlux permet √† un abonn√© de se d√©sabonner d'un flux gr√¢ce √† l'ID du flux.
+	 * @param refFlux L'ID du Flux
+	 * @return true si le d√©sabonnement s'est bien pass√©, false sinon.
 	 */
-	public boolean unsubToFlux(int idFlux) {
-		Flux fluxSel;
-		Iterator<Flux> iteFlux = listeFlux.iterator();
-		while(iteFlux.hasNext()) {
-			fluxSel = iteFlux.next();
-			if(fluxSel.getRef() == idFlux) {
-				delFlux(fluxSel);
+	public boolean unsubFromFlux(int refFlux) {
+		for(Flux myFlux : getListeFlux()) {
+			if(myFlux.getRef() == refFlux) {
+				delFlux(myFlux);
 				return true;
 			}
 		}
@@ -194,28 +190,49 @@ public class Abonne {
 	}
 	
 	/**
-	 * La fonction checkFlux permet ‡ un abonnÈ de regarder les entrÈes du flux qu'il veut.
+	 * La fonction checkFlux permet √† un abonn√© de regarder les entr√©es du flux qu'il veut.
 	 * @param myFlux le flux qu'il souhaite regarder
-	 * @return les entrÈes du flux choisi
+	 * @return les entr√©es du flux choisi
 	 */
 	public String checkFlux(Flux myFlux) {
-		return "toBeImplemented";
+		String content = "";
+		for (Entry entry : myFlux.getListeEntrees()) {
+            content = content + "Title: " + entry.getTitre()
+            + "\nPublished date: " + entry.getDatePublication()
+            + "\nDescription: " + entry.getDescription()
+            + "\nCat√©gorie(s): ";
+            for(String categorie : entry.getCategorie()) {
+            	content = content + categorie + ", ";
+            }
+            content = content + "\n\n";
+        }
+		return content;
 	}
 	
 	/**
-	 * La fonction saveFlux permet ‡ un abonnÈ de sauvegarder son flux pour qu'il puisse le regarder plus tard.
-	 * @param myFlux le flux ‡ sauvegarder
-	 * @return true si le flux a bien ÈtÈ sauvegardÈ, false sinon
+	 * La fonction saveFlux permet √† un abonn√© de sauvegarder son flux pour qu'il puisse le regarder plus tard.
+	 * @param myFlux le flux √† sauvegarder
+	 * @return true si le flux a bien √©t√© sauvegard√©, false sinon
 	 */
 	public boolean saveFlux(Flux myFlux) {
-		return false;
+		String filename = "flux.txt";
+	    new File(filename);
+	    try {
+			FileWriter myWriter = new FileWriter(filename);
+			myWriter.write(myFlux.getRef());
+			myWriter.close();
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	/**
-	 * La fonction addFilter permet ‡ un abonnÈ d'ajouter un filtre ‡ un flux pour filtrer les entrÈes
-	 * @param myFlux le flux ‡ filtrer
-	 * @param myFilter le filtre ‡ appliquer
-	 * @return true si le filtre a bien ÈtÈ appliquÈ, false sinon
+	 * La fonction addFilter permet √† un abonn√© d'ajouter un filtre √† un flux pour filtrer les entr√©es
+	 * @param myFlux le flux √† filtrer
+	 * @param myFilter le filtre √† appliquer
+	 * @return true si le filtre a bien √©t√© appliqu√©, false sinon
 	 */
 	public boolean addFilterToFlux(Flux myFlux, Filtre myFilter) {
 		return false;

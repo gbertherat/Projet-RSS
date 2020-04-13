@@ -11,7 +11,7 @@ public class FicheInscription {
 	private LocalDate dateFinInscription;
 	private Flux myFlux;
 	
-	// Constructeur par défaut //
+	// Constructeur par dÃ©faut //
 	public FicheInscription() {
 		count++;
 		ref = count;
@@ -35,7 +35,7 @@ public class FicheInscription {
 	/* SETTERS & GETTERS */
 	//-------------------//
 	
-	// Référence //
+	// RÃ©fÃ©rence //
 	public void setRef(int ref) {
 		this.ref = ref;
 	}
@@ -44,7 +44,7 @@ public class FicheInscription {
 		return this.ref;
 	}
 	
-	// Abonné //
+	// AbonnÃ© //
 	public void setAbonne(Abonne myAbonne) {
 		this.myAbonne = myAbonne;
 	}
@@ -77,7 +77,7 @@ public class FicheInscription {
 	}
 	
 	public Flux getFlux() {
-		return this.getFlux();
+		return this.myFlux;
 	}
 	
 	//-----------//
@@ -86,8 +86,8 @@ public class FicheInscription {
 	
 	// toString
 	public String toString() {
-		return "Référence: " + ref +
-			   "\nAbonné: " + myAbonne.nom + " " + myAbonne.prenom +
+		return "RÃ©fÃ©rence: " + ref +
+			   "\nAbonnÃ©: " + myAbonne.nom + " " + myAbonne.prenom +
 			   "\nDate d'inscription: " + dateInscription +
 			   "\nDate fin d'inscription: " + dateFinInscription;
 	}
