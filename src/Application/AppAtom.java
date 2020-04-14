@@ -13,6 +13,7 @@ import java.util.List;
 public class AppAtom {
 	public static void main(String[] args) throws Exception {
         String url = "https://www.sciencedaily.com/rss/all.xml";
+        //https://www.sciencedaily.com/rss/all.xml
         //http://www.france24.com/fr/actualites/rss
         //http://rss.cnn.com/rss/cnn_topstories.rss
         //https://www.journaldugeek.com/rss        

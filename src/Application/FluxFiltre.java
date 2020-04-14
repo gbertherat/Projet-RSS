@@ -3,33 +3,30 @@ package Application;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Filtre {
+public class FluxFiltre {
 	// VARS
 	private int id;
 	private static int count = 0;
 	private LocalDate dateExpiration;
 	private ArrayList<String> whitelist;
 	private ArrayList<String> blacklist;
-	private ArrayList<Flux> listeFlux;
 	
 	// Constructeur par défaut //
-	public Filtre() {
+	public FluxFiltre() {
 		count++;
 		id= count;
 		dateExpiration = null;
 		whitelist = new ArrayList<String>();
 		blacklist = new ArrayList<String>();
-		listeFlux = new ArrayList<Flux>();
 	}
 	
 	// Constructeur //
-	public Filtre(LocalDate dateExpiration) {
+	public FluxFiltre(LocalDate dateExpiration) {
 		count++;
 		this.id = count;
 		this.dateExpiration = dateExpiration;
 		this.whitelist = new ArrayList<String>();
 		this.blacklist = new ArrayList<String>();
-		this.listeFlux = new ArrayList<Flux>();
 	}
 	
 	//-------------------//
@@ -88,22 +85,6 @@ public class Filtre {
 		blacklist.remove(word);
 	}
 	
-	// Liste flux //
-	public void setListeFlux(ArrayList<Flux> listeFlux) {
-		this.listeFlux = listeFlux;
-	}
-	
-	public ArrayList<Flux> getListeFlux(){
-		return this.listeFlux;
-	}
-	
-	public void addToListeFlux(Flux myFlux) {
-		listeFlux.add(myFlux);
-	}
-	
-	public void removeFromListeFlux(Flux myFlux) {
-		listeFlux.remove(myFlux);
-	}
 	
 	//-----------//
 	/* FONCTIONS */
@@ -115,9 +96,9 @@ public class Filtre {
 			   "\nDate d'expiration: " + dateExpiration;
 	}
 	
-	
 	// equals
-	public boolean equals(Filtre myFiltre) {
-		return (id == myFiltre.id) && (dateExpiration == myFiltre.dateExpiration);
+	public boolean equals(FluxFiltre myFluxFiltre) {
+		return (id == myFluxFiltre.id) && (dateExpiration == myFluxFiltre.dateExpiration);
 	}
+	
 }

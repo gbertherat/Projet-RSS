@@ -159,13 +159,13 @@ public class Abonne {
 	 * @return true si l'abonnement s'est bien passé, false sinon.
 	 */
 	public boolean subToFlux(int refFlux) {
-		for(Flux subbedFlux: getListeFlux()) {
+		for(Flux subbedFlux: listeFlux) {
 			if(subbedFlux.getRef() == refFlux) {
 				return false;
 			}
 		}
 		
-		for(Flux myFlux : Flux.getListeFlux()) {
+		for(Flux myFlux : IU.listeFlux) {
 			if(myFlux.getRef() == refFlux) {
 				listeFlux.add(myFlux);
 				return true;
@@ -180,7 +180,7 @@ public class Abonne {
 	 * @return true si le désabonnement s'est bien passé, false sinon.
 	 */
 	public boolean unsubFromFlux(int refFlux) {
-		for(Flux myFlux : getListeFlux()) {
+		for(Flux myFlux : listeFlux) {
 			if(myFlux.getRef() == refFlux) {
 				delFlux(myFlux);
 				return true;
@@ -194,9 +194,9 @@ public class Abonne {
 	 * @param myFlux le flux qu'il souhaite regarder
 	 * @return les entrées du flux choisi
 	 */
-	public String checkFlux(Flux myFlux) {
+	public String checkFlux(int idFlux) {
 		String content = "";
-		for (Entry entry : myFlux.getListeEntrees()) {
+		for (Entry entry : IU.listeFlux.get(idFlux).getListeEntrees()) {
             content = content + "Title: " + entry.getTitre()
             + "\nPublished date: " + entry.getDatePublication()
             + "\nDescription: " + entry.getDescription()
@@ -226,15 +226,5 @@ public class Abonne {
 			e.printStackTrace();
 			return false;
 		}
-	}
-	
-	/**
-	 * La fonction addFilter permet à un abonné d'ajouter un filtre à un flux pour filtrer les entrées
-	 * @param myFlux le flux à filtrer
-	 * @param myFilter le filtre à appliquer
-	 * @return true si le filtre a bien été appliqué, false sinon
-	 */
-	public boolean addFilterToFlux(Flux myFlux, Filtre myFilter) {
-		return false;
 	}
 }

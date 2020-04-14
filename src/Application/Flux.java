@@ -1,7 +1,6 @@
 package Application;
 
 import com.sun.syndication.feed.synd.SyndCategoryImpl;
-import com.sun.syndication.feed.synd.SyndContentImpl;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.io.SyndFeedInput;
@@ -24,7 +23,6 @@ public class Flux {
 	private String localisation;
 	private ArrayList<Entry> listeEntrees;
 	private ArrayList<Abonne> listeAbonnes;
-	private static ArrayList<Flux> listeFlux = new ArrayList<>();
 	
 	// Constructeur par défaut //
 	public Flux() {
@@ -37,7 +35,6 @@ public class Flux {
 		localisation = "";
 		listeEntrees = new ArrayList<Entry>();
 		listeAbonnes = new ArrayList<Abonne>();
-		listeFlux.add(this);
 	}
 	
 	// Constructeur //
@@ -51,7 +48,6 @@ public class Flux {
 		this.localisation = localisation;
 		this.listeEntrees = new ArrayList<Entry>();
 		this.listeAbonnes = new ArrayList<Abonne>();
-		listeFlux.add(this);
 	}
 	
 	//-------------------//
@@ -146,23 +142,6 @@ public class Flux {
 		listeAbonnes.remove(myAbonne);
 	}
 	
-	// Liste Flux //
-	public void setListeFlux(ArrayList<Flux> list) {
-		listeFlux = list;
-	}
-	
-	public static ArrayList<Flux> getListeFlux(){
-		return listeFlux;
-	}
-	
-	public void addFlux(Flux flux) {
-		listeFlux.add(flux);
-	}
-	
-	public void delFlux(Flux flux) {
-		listeFlux.remove(flux);
-	}
-	
 	//-----------//
 	/* FONCTIONS */
 	//-----------//
@@ -194,13 +173,5 @@ public class Flux {
              }
              listeEntrees.add(newEntry);
         }
-	}
-	
-	public static void main(String[] args) throws Exception {
-		Flux myFlux = new Flux("France24", "https://www.sciencedaily.com/rss/all.xml", "Français", "");
-		Abonne myAbonne = new Abonne("Pierre", "San-nom", "email@mail.com", "Pierro", "123");
-		myAbonne.subToFlux(1);
-		myFlux.retrieveEntries();
-		System.out.print(myAbonne.checkFlux(myFlux) + "\n");
 	}
 }
