@@ -5,6 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * La classe Abonne permet la création d'Abonne de flux.
+ * @author Guillaume
+ */
 public class Abonne {
 	// Vars //
 	protected int id;
@@ -17,7 +21,9 @@ public class Abonne {
 	protected ArrayList<Flux> listeFlux;
 	protected ArrayList<String> listeContraintes;
 	
-	// Constructeur par défaut //
+	/**
+	 * Le constructeur par défaut de la classe Abonne
+	 */
 	public Abonne() {
 		count++;
 		id = count;
@@ -30,7 +36,14 @@ public class Abonne {
 		listeContraintes = new ArrayList<String>();
 	}
 	
-	// Constructeur //
+	/**
+	 * Le constructeur de la classe Abonne
+	 * @param nom - Le nom de l'abonne
+	 * @param prenom - Le prenom de l'abonne
+	 * @param mail - Le mail de l'abonne
+	 * @param username - Le nom d'utilisateur de l'abonne
+	 * @param password - Le mot de passe de l'abonne
+	 */
 	public Abonne(String nom, String prenom, String mail, String username, String password) {
 		count++;
 		this.id = count;
@@ -47,90 +60,162 @@ public class Abonne {
 	/* SETTERS & GETTERS */
 	//-------------------//
 	
-	// ID //
+	/**
+	 * Set l'ID d'un abonné
+	 * @param id
+	 */
 	public void setID(int id) {
 		this.id = id;
 	}
 	
+	/**
+	 * Get l'id d'un abonné
+	 * @return l'id de l'abonné choisi
+	 */
 	public int getID() {
 		return this.id;
 	}
 	
-	// Nom //
+	/**
+	 * Set le nom d'un abonné
+	 * @param nom
+	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 	
+	/**
+	 * Get le nom d'un abonné
+	 * @return le nom de l'abonné choisi
+	 */
 	public String getNom() {
 		return this.nom;
 	}
 	
-	// Prenom //
+	/**
+	 * Set le prenom d'un abonné
+	 * @param prenom
+	 */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
 	
-	public String getPrenom(String prenom) {
+	/**
+	 * Get le prenom d'un abonné
+	 * @return prenom
+	 */
+	public String getPrenom() {
 		return this.prenom;
 	}
 	
-	// Mail //
+	/**
+	 * Set le mail d'un abonné
+	 * @param mail
+	 */
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
 	
+	/**
+	 * Get le mail d'un abonné
+	 * @return mail
+	 */
 	public String getMail() {
 		return this.mail;
 	}
 	
-	// Username //
+	/**
+	 * Set l'username d'un abonné
+	 * @param username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 	
-	public String getUsername(String username) {
+	/**
+	 * Get l'username d'un abonné
+	 * @return username
+	 */
+	public String getUsername() {
 		return this.username;
 	}
 	
-	// Password //
+	/**
+	 * Set le password d'un abonné
+	 * @param password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	
+	/**
+	 * Get le password d'un abonné
+	 * @return password
+	 */
 	public String getPassword() {
 		return this.password;
 	}
 	
-	// Liste flux //
+	/**
+	 * Set la liste de flux d'un abonné
+	 * @param list
+	 */
 	public void setListeFlux(ArrayList<Flux> list) {
 		this.listeFlux = list;
 	}
 	
+	/**
+	 * Get la liste de flux d'un abonné
+	 * @return listeFlux
+	 */
 	public ArrayList<Flux> getListeFlux(){
 		return this.listeFlux;
 	}
 	
+	/**
+	 * Ajoute un flux à la liste de flux d'un abonné
+	 * @param flux
+	 */
 	public void addFlux(Flux flux) {
 		listeFlux.add(flux);
 	}
 	
+	/**
+	 * Supprime un flux de la liste de flux d'un abonné
+	 * @param flux
+	 */
 	public void delFlux(Flux flux) {
 		listeFlux.remove(flux);
 	}
 	
-	// Liste contraintes //
+	/**
+	 * Set la liste de contraintes d'un abonné
+	 * @param list
+	 */
 	public void setListeContraintes(ArrayList<String> list) {
 		this.listeContraintes = list;
 	}
 	
+	/**
+	 * Get la liste de contraintes d'un abonné
+	 * @return listeFlux
+	 */
 	public ArrayList<Flux> getListeContraintes(){
 		return this.listeFlux;
 	}
 	
+	/**
+	 * Ajoute une contrainte à la liste de contraintes d'un abonné
+	 * @param contrainte
+	 */
 	public void addContraintes(String contrainte) {
 		listeContraintes.add(contrainte);
 	}
 	
+	/**
+	 * Supprime une contrainte de la liste de contraintes d'un abonné
+	 * @param contrainte
+	 */
 	public void delContraintes(String contrainte) {
 		listeContraintes.remove(contrainte);
 	}
@@ -139,7 +224,9 @@ public class Abonne {
 	/* FONCTIONS */
 	//-----------//
 	
-	// toString //
+	/**
+	 * La fonction toString permet d'afficher les details d'un abonné dans la console
+	 */
 	public String toString() {
 		return "ID: " + id +
 			   "\nNom: " + nom +
@@ -148,7 +235,11 @@ public class Abonne {
 	}
 	
 	
-	// equals //
+	/**
+	 * La fonction equals permet de comparer les détails de deux abonnés.
+	 * @param myAbonne - Un abonné avec lequel comparer
+	 * @return true si les deux abonnés sont identiques, false sinon
+	 */
 	public boolean equals(Abonne myAbonne) {
 		return (id == myAbonne.id) && (nom.equals(myAbonne.nom)) && (prenom.equals(myAbonne.prenom)) && (mail.equals(myAbonne.mail));
 	}
