@@ -199,11 +199,7 @@ public class Abonne {
 		for (Entry entry : IU.listeFlux.get(idFlux).getListeEntrees()) {
             content = content + "Title: " + entry.getTitre()
             + "\nPublished date: " + entry.getDatePublication()
-            + "\nDescription: " + entry.getDescription()
-            + "\nCatégorie(s): ";
-            for(String categorie : entry.getCategorie()) {
-            	content = content + categorie + ", ";
-            }
+            + "\nDescription: " + entry.getDescription();
             content = content + "\n\n";
         }
 		return content;

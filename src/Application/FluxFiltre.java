@@ -20,15 +20,15 @@ public class FluxFiltre extends Flux{
 	public FluxFiltre() {
 		super();
 		dateFin = null;
-		blacklist = new ArrayList<String>();
-		whitelist = new ArrayList<String>();
+		blacklist = new ArrayList<>();
+		whitelist = new ArrayList<>();
 	}
 	
 	public FluxFiltre(String nom, String url, String langue, String localisation, LocalDate dateFin) {
 		super(nom, url, langue, localisation);
 		this.dateFin = dateFin;
-		this.blacklist = new ArrayList<String>();
-		this.whitelist = new ArrayList<String>();
+		this.blacklist = new ArrayList<>();
+		this.whitelist = new ArrayList<>();
 	}
 	
 	//-------------------//
@@ -99,7 +99,7 @@ public class FluxFiltre extends Flux{
         SyndFeed feed = input.build(new XmlReader(feedUrl));
         for (SyndEntry entry : (List<SyndEntry>) feed.getEntries()){
         	for(String motAutorise : this.whitelist) {
-        		if(entry.getTitle().toLowerCase().contains(motAutorise) && entry.getDescription().getValue().toLowerCase().contains((motAutorise))){
+        		if(entry.getTitle().toLowerCase().contains(motAutorise) || entry.getDescription().getValue().toLowerCase().contains((motAutorise))){
 	        		Entry newEntry = new Entry(entry.getTitle(), entry.getDescription().getValue(), entry.getPublishedDate());
 	        		for (SyndCategoryImpl category : (List<SyndCategoryImpl>) entry.getCategories()) {
 	        			newEntry.addCategorie(category.getName());

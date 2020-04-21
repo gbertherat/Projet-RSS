@@ -11,7 +11,7 @@ public class IU {
 		listeFlux.add(myFlux);
 		
 		FluxFiltre myFluxFiltre = new FluxFiltre("Science Daily (filtré)", "https://www.sciencedaily.com/rss/all.xml", "Anglais", "", null);
-		myFluxFiltre.addToWhitelist("covid-19");
+		myFluxFiltre.addToWhitelist("Drug");
 		
 		myFluxFiltre.retrieveFilteredEntries();
 		listeFlux.add(myFluxFiltre);
