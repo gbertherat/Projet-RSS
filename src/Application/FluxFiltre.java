@@ -107,6 +107,16 @@ public class FluxFiltre extends Flux{
 	        		listeEntrees.add(newEntry);
         		}
         	}
+        	
+        	for(String motBanni : this.blacklist) {
+        		if(!entry.getTitle().toLowerCase().contains(motBanni) && !entry.getDescription().getValue().toLowerCase().contains((motBanni))){
+	        		Entry newEntry = new Entry(entry.getTitle(), entry.getDescription().getValue(), entry.getPublishedDate());
+	        		for (SyndCategoryImpl category : (List<SyndCategoryImpl>) entry.getCategories()) {
+	        			newEntry.addCategorie(category.getName());
+	        		}
+	        		listeEntrees.add(newEntry);
+        		}
+        	}
         }
 	}
 }

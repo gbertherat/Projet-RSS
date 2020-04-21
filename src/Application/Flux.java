@@ -22,6 +22,7 @@ public class Flux {
 	protected LocalDate dateAjout;
 	protected String localisation;
 	protected ArrayList<Entry> listeEntrees;
+	protected ArrayList<String> listeCategories;
 	protected ArrayList<Abonne> listeAbonnes;
 	
 	// Constructeur par défaut //
@@ -123,6 +124,23 @@ public class Flux {
 	
 	public void delEntree(Entry myEntry) {
 		listeEntrees.remove(myEntry);
+	}
+	
+	// Categorie //
+	public void setListeCategories(ArrayList<String> list) {
+		this.listeCategories = list;
+	}
+	
+	public ArrayList<String> getCategorie() {
+		return this.listeCategories;
+	}
+	
+	public void addCategorie(String categorie) {
+		listeCategories.add(categorie);
+	}
+	
+	public void delCategorie(String categorie) {
+		listeCategories.remove(categorie);
 	}
 	
 	// Liste abonnés //

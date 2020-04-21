@@ -12,7 +12,6 @@ public class Entry {
 	private String description;
 	private ArrayList<String> listeContenues;
 	private Date datePublication;
-	private String categorie;
 	
 	// Constructeur par défaut //
 	public Entry() {
@@ -23,11 +22,10 @@ public class Entry {
 		description = "";
 		listeContenues = new ArrayList<String>();
 		datePublication = null;
-		categorie = "";
 	}
 	
 	// Constructeur //
-	public Entry(String titre, String description, Date date, String categorie) {
+	public Entry(String titre, String description, Date date) {
 		count++;
 		this.id = count;
 		this.titre = titre;
@@ -35,7 +33,6 @@ public class Entry {
 		this.description = description;
 		this.listeContenues = new ArrayList<String>();
 		this.datePublication = date;
-		this.categorie = categorie;
 	}
 	
 	//-------------------//
