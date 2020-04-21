@@ -214,12 +214,12 @@ public class Abonne {
 	 * @param myFlux le flux à sauvegarder
 	 * @return true si le flux a bien été sauvegardé, false sinon
 	 */
-	public boolean saveFlux(Flux myFlux) {
+	public boolean saveFlux(int idFlux) {
 		String filename = "flux.txt";
 	    new File(filename);
 	    try {
 			FileWriter myWriter = new FileWriter(filename);
-			myWriter.write(myFlux.getRef());
+			myWriter.write(IU.listeFlux.get(idFlux).getRef());
 			myWriter.close();
 			return true;
 		} catch (IOException e) {

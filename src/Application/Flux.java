@@ -14,15 +14,15 @@ import java.util.List;
 
 public class Flux {
 	// Vars //
-	private int ref;
-	private static int count = 0;
-	private String nom;
-	private String url;
-	private String langue;
-	private LocalDate dateAjout;
-	private String localisation;
-	private ArrayList<Entry> listeEntrees;
-	private ArrayList<Abonne> listeAbonnes;
+	protected int ref;
+	protected static int count = -1;
+	protected String nom;
+	protected String url;
+	protected String langue;
+	protected LocalDate dateAjout;
+	protected String localisation;
+	protected ArrayList<Entry> listeEntrees;
+	protected ArrayList<Abonne> listeAbonnes;
 	
 	// Constructeur par défaut //
 	public Flux() {
