@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * La classe Entry permet de créer des entrées pour un flux.
+ * La classe Entry permet de creer des entrees pour un flux.
  * @author Guillaume
  */
 public class Entry {
@@ -18,7 +18,7 @@ public class Entry {
 	private Date datePublication;
 	
 	/**
-	 * Constructeur par défaut de la classe Entry
+	 * Constructeur par defaut de la classe Entry
 	 */
 	public Entry() {
 		count++;
@@ -32,9 +32,9 @@ public class Entry {
 	
 	/**
 	 * Constructeur de la classe Entry
-	 * @param titre - Le titre de l'entrée
-	 * @param description - La description de l'entrée
-	 * @param date - La date de publication de l'entrée
+	 * @param titre - Le titre de l'entree
+	 * @param description - La description de l'entree
+	 * @param date - La date de publication de l'entree
 	 */
 	public Entry(String titre, String description, Date date) {
 		count++;
@@ -51,7 +51,7 @@ public class Entry {
 	//-------------------//
 	
 	/**
-	 * Set l'ID d'une entrée
+	 * Set l'ID d'une entree
 	 * @param id
 	 */
 	public void setID(int id) {
@@ -59,7 +59,7 @@ public class Entry {
 	}
 	
 	/**
-	 * Get l'ID d'une entrée
+	 * Get l'ID d'une entree
 	 * @return id
 	 */
 	public int getID() {
@@ -67,7 +67,7 @@ public class Entry {
 	}
 	
 	/**
-	 * Set le titre d'une entrée
+	 * Set le titre d'une entree
 	 * @param titre
 	 */
 	public void setTitre(String titre) {
@@ -75,7 +75,7 @@ public class Entry {
 	}
 	
 	/**
-	 * Get le titre d'une entrée
+	 * Get le titre d'une entree
 	 * @return titre
 	 */
 	public String getTitre() {
@@ -83,7 +83,7 @@ public class Entry {
 	}
 	
 	/**
-	 * Set la liste de catégories d'une entrée
+	 * Set la liste de categories d'une entree
 	 * @param list
 	 */
 	public void setListeCategories(ArrayList<String> list) {
@@ -91,7 +91,7 @@ public class Entry {
 	}
 	
 	/**
-	 * Get la liste de catégories d'une entrée
+	 * Get la liste de categories d'une entree
 	 * @return listeCategories
 	 */
 	public ArrayList<String> getCategorie() {
@@ -99,7 +99,7 @@ public class Entry {
 	}
 	
 	/**
-	 * Ajoute une catégorie à la liste de catégories d'une entrée
+	 * Ajoute une categorie a la liste de categories d'une entree
 	 * @param categorie
 	 */
 	public void addCategorie(String categorie) {
@@ -107,7 +107,7 @@ public class Entry {
 	}
 	
 	/**
-	 * Supprime une catégorie de la liste de catégories d'une entrée
+	 * Supprime une categorie de la liste de categories d'une entree
 	 * @param categorie
 	 */
 	public void delCategorie(String categorie) {
@@ -115,7 +115,7 @@ public class Entry {
 	}
 	
 	/**
-	 * Set la description d'une entrée
+	 * Set la description d'une entree
 	 * @param description
 	 */
 	public void setDescription(String description) {
@@ -123,7 +123,7 @@ public class Entry {
 	}
 	
 	/**
-	 * Get la description d'une entrée
+	 * Get la description d'une entree
 	 * @return description
 	 */
 	public String getDescription() {
@@ -131,15 +131,15 @@ public class Entry {
 	}
 	
 	/** 
-	 * Set la liste de contenus d'une entrée
-	 * @param contenue
+	 * Set la liste de contenus d'une entree
+	 * @param contenu
 	 */
 	public void setListeContenu(ArrayList<String> contenu) {
 		this.listeContenus = contenu;
 	}
 	
 	/**
-	 * Get la liste de contenus d'une entrée
+	 * Get la liste de contenus d'une entree
 	 * @return listeContenus
 	 */
 	public ArrayList<String> getListeContenu() {
@@ -147,15 +147,15 @@ public class Entry {
 	}
 	
 	/**
-	 * Ajoute un contenu à la liste de contenu d'une entrée
-	 * @param contenue
+	 * Ajoute un contenu a la liste de contenu d'une entree
+	 * @param contenu
 	 */
 	public void addContenu(String contenu) {
 		listeContenus.add(contenu);
 	}
 	
 	/**
-	 * Supprime un contenu de la liste de contenu d'une entrée
+	 * Supprime un contenu de la liste de contenu d'une entree
 	 * @param contenu
 	 */
 	public void delContenu(String contenu) {
@@ -163,7 +163,7 @@ public class Entry {
 	}
 	
 	/**
-	 * Set la date de publication d'une entreée
+	 * Set la date de publication d'une entreee
 	 * @param date
 	 */
 	public void setDatePublication(Date date) {
@@ -171,7 +171,7 @@ public class Entry {
 	}
 	
 	/**
-	 * Get la date de publication d'une entrée
+	 * Get la date de publication d'une entree
 	 * @return datePublication
 	 */
 	public Date getDatePublication() {
@@ -183,7 +183,7 @@ public class Entry {
 	//-----------//
 	
 	/**
-	 * La fonction toString permet d'afficher les détails d'une entrée dans la console
+	 * La fonction toString permet d'afficher les details d'une entree dans la console
 	 */
 	public String toString() {
 		return "ID: " + id +
@@ -192,9 +192,9 @@ public class Entry {
 	}
 	
 	/**
-	 * La fonction equals permet de comparer les détails de deux entrées
-	 * @param myEntry - Une entrée avec laquelle comparer
-	 * @return true si les deux entrées sont identiques, false sinon.
+	 * La fonction equals permet de comparer les details de deux entrees
+	 * @param myEntry - Une entree avec laquelle comparer
+	 * @return true si les deux entrees sont identiques, false sinon.
 	 */
 	public boolean equals(Entry myEntry) {
 		return (id == myEntry.id) && (titre == myEntry.titre) && (datePublication == myEntry.datePublication);

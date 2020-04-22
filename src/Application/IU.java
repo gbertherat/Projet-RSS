@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 
 /**
- * La classe IU correspond à l'Interface Utilisateur, c'est elle qui contient les interactions entre l'utilisateur et l'application
+ * La classe IU correspond a l'Interface Utilisateur, c'est elle qui contient les interactions entre l'utilisateur et l'application
  * @author Guillaume
  */
 public class IU {
@@ -29,26 +29,26 @@ public class IU {
 		
 		while(true) {
 			int choix = 0;
-			// Options par défaut
+			// Options par defaut
 			System.out.print("Que souhaitez-vous faire?\n"
 					+ "1) Voir la liste des flux\n"
-					+ "2) Voir les détails d'un flux\n"
-					+ "3) Voir les entrées d'un flux\n"
+					+ "2) Voir les details d'un flux\n"
+					+ "3) Voir les entrees d'un flux\n"
 					+ "4) Filtrer un flux\n");
-			if(idConnected != 0) { // Options si l'utilisateur est connecté
-				System.out.print("7) S'abonner à un flux\n"
-						+ "8) Se désabonner d'un flux\n"
-						+ "9) Télécharger un flux\n"
+			if(idConnected != 0) { // Options si l'utilisateur est connecte
+				System.out.print("7) S'abonner a un flux\n"
+						+ "8) Se desabonner d'un flux\n"
+						+ "9) Telecharger un flux\n"
 						+ "10) Voir les informations de mon compte\n"
-						+ "11) Voir les flux auxquels je suis abonné\n"
-						+ "12) Se déconnecter\n");
-				if(listeAbonnes.get(idConnected).getClass().getSimpleName().equals("Administrateur")) { // Options si l'utilisateur connecté est un administrateur
+						+ "11) Voir les flux auxquels je suis abonne\n"
+						+ "12) Se deconnecter\n");
+				if(listeAbonnes.get(idConnected).getClass().getSimpleName().equals("Administrateur")) { // Options si l'utilisateur connecte est un administrateur
 					System.out.print("13) Voir la liste des utilisateurs\n"
 							+ "14) Supprimer un utilisateur\n"
 							+ "15) Supprimer un flux\n"
-							+ "16) Ajouter une contrainte à un utilisateur\n");
+							+ "16) Ajouter une contrainte a un utilisateur\n");
 				}
-			} else { // Options si l'utilisateur n'est pas connecté
+			} else { // Options si l'utilisateur n'est pas connecte
 				System.out.print("5) Se connecter\n"
 						+ "6) S'inscrire\n");
 			}
@@ -64,7 +64,7 @@ public class IU {
 			System.out.println("");
 			myScanner.nextLine();
 			
-			// Options par défaut
+			// Options par defaut
 			switch(choix) { // Voir la liste des flux
 				case 1:{
 					System.out.println("Nom des flux:");
@@ -73,7 +73,7 @@ public class IU {
 					}
 					break;
 				}
-				case 2:{ // Voir les détails d'un flux
+				case 2:{ // Voir les details d'un flux
 					int id = -1;
 					System.out.print("Entrez l'ID du flux:\n>> ");
 					try {
@@ -85,7 +85,7 @@ public class IU {
 					myScanner.nextLine();
 					break;
 				}
-				case 3:{ // Voir les entrées d'un flux
+				case 3:{ // Voir les entrees d'un flux
 					int id = -1;
 					System.out.print("Entrez l'ID du flux:\n>> ");
 					try {
@@ -99,7 +99,7 @@ public class IU {
 				}
 				case 4:{ // Filtrer un flux
 					int id = -1;
-					System.out.print("Entrez l'ID du flux à filtrer:\n>> ");
+					System.out.print("Entrez l'ID du flux a filtrer:\n>> ");
 					FluxFiltre flux = new FluxFiltre();
 					try {
 						id = myScanner.nextInt();
@@ -112,7 +112,7 @@ public class IU {
 					
 					boolean done = false;
 					String mot;
-					System.out.print("Entrez les mots à bannir:\n"
+					System.out.print("Entrez les mots a bannir:\n"
 							+ "(Entrez done quand vous avez fini)");
 					while(done == false) {
 						System.out.print("\n>> ");
@@ -121,11 +121,11 @@ public class IU {
 							done = true;
 						} else {
 							flux.addToBlacklist(mot);
-							System.out.println("Le mot a bien été blacklisté.\n");
+							System.out.println("Le mot a bien ete blackliste.\n");
 						}
 					}
 					
-					System.out.print("Entrez les mots à laisser passer uniquement:\n"
+					System.out.print("Entrez les mots a laisser passer uniquement:\n"
 							+ "(Entrez done quand vous avez fini)");
 					done = false;
 					while(!done) {
@@ -135,10 +135,10 @@ public class IU {
 							done = true;
 						} else {
 							flux.addToWhitelist(mot);
-							System.out.println("Le mot a bien été whitelisté.\n");
+							System.out.println("Le mot a bien ete whiteliste.\n");
 						}
 					}
-					flux.setNom(flux.nom + " (filtré)");
+					flux.setNom(flux.nom + " (filtre)");
 					flux.retrieveFilteredEntries();
 					listeFlux.add(flux);
 					break;
@@ -187,7 +187,7 @@ public class IU {
 					nom = myScanner.nextLine();
 					
 					String prenom;
-					System.out.print("\nEntrez votre prénom: ");
+					System.out.print("\nEntrez votre prenom: ");
 					prenom = myScanner.nextLine();
 					
 					String mail;
@@ -202,7 +202,7 @@ public class IU {
 						username = myScanner.nextLine();
 						for(Abonne abonne : listeAbonnes) {
 							if(abonne.getUsername().equals(username)) {
-								System.out.println("Utilisateur déjà pris.");
+								System.out.println("Utilisateur deja pris.");
 								duplicate = true;
 							}
 						}
@@ -216,8 +216,8 @@ public class IU {
 					break;
 				}
 				
-				// Options si l'utilisateur est connecté
-				case 7:{ // S'abonner à un flux
+				// Options si l'utilisateur est connecte
+				case 7:{ // S'abonner a un flux
 					if(idConnected != 0) {
 						int idFlux;
 						System.out.print("Entrez l'id du flux auquel vous voulez vous abonner (ou -1 pour annuler): ");
@@ -233,7 +233,7 @@ public class IU {
 						} else {
 							try {
 								if(listeAbonnes.get(idConnected).subToFlux(idFlux)) {
-									System.out.println("Abonnement enregistré.");
+									System.out.println("Abonnement enregistre.");
 								} else {
 									System.out.println("Erreur lors de l'abonnement.");
 								}
@@ -245,10 +245,10 @@ public class IU {
 					}
 					break;
 				}
-				case 8:{ // Se désabonner d'un flux
+				case 8:{ // Se desabonner d'un flux
 					if(idConnected != 0) {
 						int idFlux;
-						System.out.print("Entrez l'id du flux auquel vous voulez vous désabonner (ou -1 pour annuler): ");
+						System.out.print("Entrez l'id du flux auquel vous voulez vous desabonner (ou -1 pour annuler): ");
 						try {
 							idFlux = myScanner.nextInt();
 						} catch(Exception e) {
@@ -261,7 +261,7 @@ public class IU {
 						} else {
 							try {
 								if(listeAbonnes.get(idConnected).unsubFromFlux(idFlux)) {
-									System.out.println("Désabonnement enregistré.");
+									System.out.println("Desabonnement enregistre.");
 								} else {
 									System.out.println("Erreur lors de l'abonnement.");
 								}
@@ -273,10 +273,10 @@ public class IU {
 					}
 					break;
 				}
-				case 9:{ // Télécharger un flux
+				case 9:{ // Telecharger un flux
 					if(idConnected != 0) {
 						int idFlux;
-						System.out.print("Entrez l'id du flux que vous voulez télécharger (ou -1 pour annuler) : ");
+						System.out.print("Entrez l'id du flux que vous voulez telecharger (ou -1 pour annuler) : ");
 						try {
 							idFlux = myScanner.nextInt();
 						} catch(Exception e) {
@@ -289,9 +289,9 @@ public class IU {
 						} else {
 							try {
 								if(listeAbonnes.get(idConnected).saveFlux(idFlux)) {
-									System.out.println("Le flux a bien été téléchargé!");
+									System.out.println("Le flux a bien ete telecharge!");
 								} else {
-									System.out.println("Erreur lors du téléchargement");
+									System.out.println("Erreur lors du telechargement");
 								}
 							} catch(Exception e) {
 								System.out.println("Erreur.");
@@ -301,13 +301,13 @@ public class IU {
 					}
 					break;
 				}
-				case 10:{ // Voir les détails du compte
+				case 10:{ // Voir les details du compte
 					if(idConnected != 0) {
 						System.out.println(listeAbonnes.get(idConnected));
 					}
 					break;
 				}
-				case 11:{ // Voir la liste des flux auxquels l'utilisateur est abonné
+				case 11:{ // Voir la liste des flux auxquels l'utilisateur est abonne
 					if(idConnected != 0) {
 						for(Flux flux: listeAbonnes.get(idConnected).getListeFlux()) {
 							System.out.println(flux.getRef() + ") " + flux.getNom());
@@ -315,13 +315,13 @@ public class IU {
 					}
 					break;
 				} 
-				case 12:{ // Se déconnecter
+				case 12:{ // Se deconnecter
 					idConnected = 0;
 					break;
 				}
 				
-				// Si l'utilisateur connecté est un administrateur
-				case 13:{ // Voir la liste des abonnés
+				// Si l'utilisateur connecte est un administrateur
+				case 13:{ // Voir la liste des abonnes
 					if(listeAbonnes.get(idConnected).getClass().getSimpleName().equals("Administrateur")) {
 						for(Abonne abonne : listeAbonnes) {
 							System.out.println(abonne.getID() + ") " + abonne.getNom() + " " + abonne.getPrenom());
@@ -329,10 +329,10 @@ public class IU {
 					}
 					break;
 				}
-				case 14:{ // Supprimer un abonné
+				case 14:{ // Supprimer un abonne
 					if(listeAbonnes.get(idConnected).getClass().getSimpleName().equals("Administrateur")) {
 						int idSub;
-						System.out.print("Entrez l'id de l'abonné à supprimer (ou -1 pour annuler): ");
+						System.out.print("Entrez l'id de l'abonne a supprimer (ou -1 pour annuler): ");
 						idSub = myScanner.nextInt();
 						myScanner.nextLine();
 						if(idSub == -1) {
@@ -341,11 +341,11 @@ public class IU {
 							for(Abonne abo : listeAbonnes) {
 								if(abo.getID() == idSub) {
 									abo.setMail("");
-									abo.setNom("Abonné supprimé");
+									abo.setNom("Abonne supprime");
 									abo.setPrenom("");
 									abo.setUsername("");
 									abo.setPassword("");
-									System.out.println("Abonné supprimé.");
+									System.out.println("Abonne supprime.");
 								}
 							}
 						}
@@ -355,7 +355,7 @@ public class IU {
 				case 15:{ // Supprimer un flux
 					if(listeAbonnes.get(idConnected).getClass().getSimpleName().equals("Administrateur")) {
 						int idFlux;
-						System.out.print("Entrez l'id du flux à supprimer (ou -1 pour annuler): ");
+						System.out.print("Entrez l'id du flux a supprimer (ou -1 pour annuler): ");
 						idFlux = myScanner.nextInt();
 						myScanner.nextLine();
 						if(idFlux == -1) {
@@ -363,11 +363,11 @@ public class IU {
 						} else {
 							for(Flux flux : listeFlux) {
 								if(flux.getRef() == idFlux) {
-									flux.setNom("Flux supprimé");
+									flux.setNom("Flux supprime");
 									flux.setUrl("");
 									flux.setLangue("");
 									flux.setLocalisation("");
-									System.out.println("Flux supprimé.");
+									System.out.println("Flux supprime.");
 									break;
 								}
 							}

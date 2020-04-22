@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * La classe Flux permet la création de flux
+ * La classe Flux permet la creation de flux
  * @author Guillaume
  */
 public class Flux {
@@ -29,7 +29,7 @@ public class Flux {
 	protected ArrayList<Abonne> listeAbonnes;
 	
 	/**
-	 * Constructeur par défaut de la classe Flux
+	 * Constructeur par defaut de la classe Flux
 	 */
 	public Flux() {
 		count++;
@@ -67,7 +67,7 @@ public class Flux {
 	//-------------------//
 	
 	/**
-	 * Set la référence d'un flux
+	 * Set la reference d'un flux
 	 * @param ref
 	 */
 	public void setRef(int ref) {
@@ -75,7 +75,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Get la référence d'un flux
+	 * Get la reference d'un flux
 	 * @return ref
 	 */
 	public int getRef() {
@@ -164,7 +164,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Get la liste d'entrées d'un flux
+	 * Get la liste d'entrees d'un flux
 	 * @param list
 	 */
 	public void setListeEntrees(ArrayList<Entry> list) {
@@ -172,7 +172,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Set la liste d'entrées d'un flux
+	 * Set la liste d'entrees d'un flux
 	 * @return listeEntrees
 	 */
 	public ArrayList<Entry> getListeEntrees(){
@@ -180,7 +180,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Ajoute une entrée à un flux
+	 * Ajoute une entree a un flux
 	 * @param myEntry
 	 */
 	public void addEntree(Entry myEntry) {
@@ -188,7 +188,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Supprime une entrée d'un flux
+	 * Supprime une entree d'un flux
 	 * @param myEntry
 	 */
 	public void delEntree(Entry myEntry) {
@@ -196,7 +196,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Set la liste de catégories d'un flux
+	 * Set la liste de categories d'un flux
 	 * @param list
 	 */
 	public void setListeCategories(ArrayList<String> list) {
@@ -204,7 +204,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Get la liste de catégories d'un flux
+	 * Get la liste de categories d'un flux
 	 * @return listeCategories
 	 */
 	public ArrayList<String> getCategorie() {
@@ -212,7 +212,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Ajoute une catégorie à un flux 
+	 * Ajoute une categorie a un flux 
 	 * @param categorie
 	 */
 	public void addCategorie(String categorie) {
@@ -220,7 +220,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Supprime une catégorie d'un flux
+	 * Supprime une categorie d'un flux
 	 * @param categorie
 	 */
 	public void delCategorie(String categorie) {
@@ -228,7 +228,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Set la liste d'abonnés d'un flux
+	 * Set la liste d'abonnes d'un flux
 	 * @param list
 	 */
 	public void setListeAbonnes(ArrayList<Abonne> list) {
@@ -236,7 +236,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Get la liste d'abonnés d'un flux
+	 * Get la liste d'abonnes d'un flux
 	 * @return listeAbonnes
 	 */
 	public ArrayList<Abonne> getListeAbonnes(){
@@ -244,7 +244,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Ajoute un abonné à un flux
+	 * Ajoute un abonne a un flux
 	 * @param myAbonne
 	 */
 	public void addAbonne(Abonne myAbonne) {
@@ -252,7 +252,7 @@ public class Flux {
 	}
 	
 	/**
-	 * Supprime un abonné d'un flux
+	 * Supprime un abonne d'un flux
 	 * @param myAbonne
 	 */
 	public void delAbonne(Abonne myAbonne) {
@@ -264,10 +264,10 @@ public class Flux {
 	//-----------//
 	
 	/**
-	 * La fonction toString permet d'afficher les détails d'un flux dans la console
+	 * La fonction toString permet d'afficher les details d'un flux dans la console
 	 */
 	public String toString() {
-		return "Référence: " + ref +
+		return "Reference: " + ref +
 				"\nNom: " + nom +
 				"\nUrl: " + url +
 				"\nLangue: " + langue +
@@ -276,7 +276,7 @@ public class Flux {
 	}
 	
 	/**
-	 * La fonction equals permet de comparer les détails de deux flux
+	 * La fonction equals permet de comparer les details de deux flux
 	 * @param myFlux - Le flux avec lequel comparer
  	 * @return true si les flux sont identiques, false sinon.
 	 */
@@ -285,7 +285,7 @@ public class Flux {
 	}
 	
 	/**
-	 * La fonction retrieveEntries permet de récupérer toutes les entrées d'un flux RSS selon l'url du flux.
+	 * La fonction retrieveEntries permet de recuperer toutes les entrees d'un flux RSS selon l'url du flux.
 	 * @throws Exception
 	 */
 	public void retrieveEntries() throws Exception {

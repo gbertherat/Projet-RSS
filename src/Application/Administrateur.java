@@ -1,7 +1,7 @@
 package Application;
 
 /**
- * La classe Administrateur permet la création de compte administrateur.
+ * La classe Administrateur permet la creation de compte administrateur.
  * @author Guillaume
  * @see Abonne
  */

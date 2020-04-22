@@ -12,7 +12,7 @@ import com.sun.syndication.io.SyndFeedInput;
 import com.sun.syndication.io.XmlReader;
 
 /**
- * La classe FluxFiltre permet la création de flux contenant des entrées filtrées
+ * La classe FluxFiltre permet la creation de flux contenant des entrees filtrees
  * @author Guillaume
  * @see Flux
  */
@@ -23,7 +23,7 @@ public class FluxFiltre extends Flux{
 	private ArrayList<String> whitelist;
 
 	/**
-	 * Constructeur par défaut de la classe FluxFiltre
+	 * Constructeur par defaut de la classe FluxFiltre
 	 */
 	public FluxFiltre() {
 		super();
@@ -84,7 +84,7 @@ public class FluxFiltre extends Flux{
 	}
 	
 	/**
-	 * Ajoute un mot à la blacklist d'un flux
+	 * Ajoute un mot a la blacklist d'un flux
 	 * @param word
 	 */
 	public void addToBlacklist(String word) {
@@ -116,7 +116,7 @@ public class FluxFiltre extends Flux{
 	}
 	
 	/**
-	 * Ajoute un mot à la whitelist d'un flux
+	 * Ajoute un mot a la whitelist d'un flux
 	 * @param word
 	 */
 	public void addToWhitelist(String word) {
@@ -136,7 +136,7 @@ public class FluxFiltre extends Flux{
 	//-----------//
 	
 	/**
-	 * La fonction toString permet d'afficher les détails d'un flux filtré dans la console
+	 * La fonction toString permet d'afficher les details d'un flux filtre dans la console
 	 */
 	public String toString() {
 		return super.toString() +
@@ -144,7 +144,7 @@ public class FluxFiltre extends Flux{
 	}
 	
 	/**
-	 * La fonction equals permet de comparer les détails de deux flux filtrés
+	 * La fonction equals permet de comparer les details de deux flux filtres
 	 * @param flux - Le flux avec lequel comparer
 	 * @return true si les deux flux sont identiques, false sinon
 	 */
@@ -154,7 +154,7 @@ public class FluxFiltre extends Flux{
 	
 	/**
 	 * La fonction copyFlux permet de copier les attributs d'un autre flux
-	 * @param flux - Flux à copier
+	 * @param flux - Flux a copier
 	 */
 	public void copyFlux(Flux flux) {
 		this.nom = flux.nom;
@@ -164,7 +164,7 @@ public class FluxFiltre extends Flux{
 	}
 	
 	/**
-	 * La fonction retrieveFilteredEntries permet de récupérer les entrées d'un flux RSS en fonction de la blacklist et de la whitelist pour filtrer ces entrées.
+	 * La fonction retrieveFilteredEntries permet de recuperer les entrees d'un flux RSS en fonction de la blacklist et de la whitelist pour filtrer ces entrees.
 	 * @throws Exception
 	 */
 	public void retrieveFilteredEntries() throws Exception {

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * La classe Abonne permet la création d'Abonne de flux.
+ * La classe Abonne permet la creation d'Abonne de flux.
  * @author Guillaume
  */
 public class Abonne {
@@ -22,7 +22,7 @@ public class Abonne {
 	protected ArrayList<String> listeContraintes;
 	
 	/**
-	 * Le constructeur par défaut de la classe Abonne
+	 * Le constructeur par defaut de la classe Abonne
 	 */
 	public Abonne() {
 		count++;
@@ -61,7 +61,7 @@ public class Abonne {
 	//-------------------//
 	
 	/**
-	 * Set l'ID d'un abonné
+	 * Set l'ID d'un abonne
 	 * @param id
 	 */
 	public void setID(int id) {
@@ -69,15 +69,15 @@ public class Abonne {
 	}
 	
 	/**
-	 * Get l'id d'un abonné
-	 * @return l'id de l'abonné choisi
+	 * Get l'id d'un abonne
+	 * @return l'id de l'abonne choisi
 	 */
 	public int getID() {
 		return this.id;
 	}
 	
 	/**
-	 * Set le nom d'un abonné
+	 * Set le nom d'un abonne
 	 * @param nom
 	 */
 	public void setNom(String nom) {
@@ -85,15 +85,15 @@ public class Abonne {
 	}
 	
 	/**
-	 * Get le nom d'un abonné
-	 * @return le nom de l'abonné choisi
+	 * Get le nom d'un abonne
+	 * @return le nom de l'abonne choisi
 	 */
 	public String getNom() {
 		return this.nom;
 	}
 	
 	/**
-	 * Set le prenom d'un abonné
+	 * Set le prenom d'un abonne
 	 * @param prenom
 	 */
 	public void setPrenom(String prenom) {
@@ -101,7 +101,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Get le prenom d'un abonné
+	 * Get le prenom d'un abonne
 	 * @return prenom
 	 */
 	public String getPrenom() {
@@ -109,7 +109,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Set le mail d'un abonné
+	 * Set le mail d'un abonne
 	 * @param mail
 	 */
 	public void setMail(String mail) {
@@ -117,7 +117,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Get le mail d'un abonné
+	 * Get le mail d'un abonne
 	 * @return mail
 	 */
 	public String getMail() {
@@ -125,7 +125,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Set l'username d'un abonné
+	 * Set l'username d'un abonne
 	 * @param username
 	 */
 	public void setUsername(String username) {
@@ -133,7 +133,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Get l'username d'un abonné
+	 * Get l'username d'un abonne
 	 * @return username
 	 */
 	public String getUsername() {
@@ -141,7 +141,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Set le password d'un abonné
+	 * Set le password d'un abonne
 	 * @param password
 	 */
 	public void setPassword(String password) {
@@ -149,7 +149,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Get le password d'un abonné
+	 * Get le password d'un abonne
 	 * @return password
 	 */
 	public String getPassword() {
@@ -157,7 +157,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Set la liste de flux d'un abonné
+	 * Set la liste de flux d'un abonne
 	 * @param list
 	 */
 	public void setListeFlux(ArrayList<Flux> list) {
@@ -165,7 +165,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Get la liste de flux d'un abonné
+	 * Get la liste de flux d'un abonne
 	 * @return listeFlux
 	 */
 	public ArrayList<Flux> getListeFlux(){
@@ -173,7 +173,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Ajoute un flux à la liste de flux d'un abonné
+	 * Ajoute un flux a la liste de flux d'un abonne
 	 * @param flux
 	 */
 	public void addFlux(Flux flux) {
@@ -181,7 +181,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Supprime un flux de la liste de flux d'un abonné
+	 * Supprime un flux de la liste de flux d'un abonne
 	 * @param flux
 	 */
 	public void delFlux(Flux flux) {
@@ -189,7 +189,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Set la liste de contraintes d'un abonné
+	 * Set la liste de contraintes d'un abonne
 	 * @param list
 	 */
 	public void setListeContraintes(ArrayList<String> list) {
@@ -197,7 +197,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Get la liste de contraintes d'un abonné
+	 * Get la liste de contraintes d'un abonne
 	 * @return listeFlux
 	 */
 	public ArrayList<Flux> getListeContraintes(){
@@ -205,7 +205,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Ajoute une contrainte à la liste de contraintes d'un abonné
+	 * Ajoute une contrainte a la liste de contraintes d'un abonne
 	 * @param contrainte
 	 */
 	public void addContraintes(String contrainte) {
@@ -213,7 +213,7 @@ public class Abonne {
 	}
 	
 	/**
-	 * Supprime une contrainte de la liste de contraintes d'un abonné
+	 * Supprime une contrainte de la liste de contraintes d'un abonne
 	 * @param contrainte
 	 */
 	public void delContraintes(String contrainte) {
@@ -225,7 +225,7 @@ public class Abonne {
 	//-----------//
 	
 	/**
-	 * La fonction toString permet d'afficher les details d'un abonné dans la console
+	 * La fonction toString permet d'afficher les details d'un abonne dans la console
 	 */
 	public String toString() {
 		return "ID: " + id +
@@ -236,18 +236,18 @@ public class Abonne {
 	
 	
 	/**
-	 * La fonction equals permet de comparer les détails de deux abonnés.
-	 * @param myAbonne - Un abonné avec lequel comparer
-	 * @return true si les deux abonnés sont identiques, false sinon
+	 * La fonction equals permet de comparer les details de deux abonnes.
+	 * @param myAbonne - Un abonne avec lequel comparer
+	 * @return true si les deux abonnes sont identiques, false sinon
 	 */
 	public boolean equals(Abonne myAbonne) {
 		return (id == myAbonne.id) && (nom.equals(myAbonne.nom)) && (prenom.equals(myAbonne.prenom)) && (mail.equals(myAbonne.mail));
 	}
 	
 	/**
-	 * La fonction subToFlux permet à un abonné de s'abonner à un flux grâce à l'ID du flux.
+	 * La fonction subToFlux permet a un abonne de s'abonner a un flux grâce a l'ID du flux.
 	 * @param refFlux L'ID du Flux
-	 * @return true si l'abonnement s'est bien passé, false sinon.
+	 * @return true si l'abonnement s'est bien passe, false sinon.
 	 */
 	public boolean subToFlux(int refFlux) {
 		for(Flux subbedFlux: listeFlux) {
@@ -266,9 +266,9 @@ public class Abonne {
 	}
 	
 	/**
-	 * La fonction unsubToFlux permet à un abonné de se désabonner d'un flux grâce à l'ID du flux.
+	 * La fonction unsubToFlux permet a un abonne de se desabonner d'un flux grâce a l'ID du flux.
 	 * @param refFlux L'ID du Flux
-	 * @return true si le désabonnement s'est bien passé, false sinon.
+	 * @return true si le desabonnement s'est bien passe, false sinon.
 	 */
 	public boolean unsubFromFlux(int refFlux) {
 		for(Flux myFlux : listeFlux) {
@@ -281,9 +281,9 @@ public class Abonne {
 	}
 	
 	/**
-	 * La fonction checkFlux permet à un abonné de regarder les entrées du flux qu'il veut.
-	 * @param myFlux le flux qu'il souhaite regarder
-	 * @return les entrées du flux choisi
+	 * La fonction checkFlux permet a un abonne de regarder les entrees du flux qu'il veut.
+	 * @param idFlux le flux qu'il souhaite regarder
+	 * @return les entrees du flux choisi
 	 */
 	public String checkFlux(int idFlux) {
 		String content = "";
@@ -297,9 +297,9 @@ public class Abonne {
 	}
 	
 	/**
-	 * La fonction saveFlux permet à un abonné de sauvegarder son flux pour qu'il puisse le regarder plus tard.
-	 * @param myFlux le flux à sauvegarder
-	 * @return true si le flux a bien été sauvegardé, false sinon
+	 * La fonction saveFlux permet a un abonne de sauvegarder son flux pour qu'il puisse le regarder plus tard.
+	 * @param idFlux le flux a sauvegarder
+	 * @return true si le flux a bien ete sauvegarde, false sinon
 	 */
 	public boolean saveFlux(int idFlux) {
 		String filename = IU.listeFlux.get(idFlux).getNom().replaceAll("\\s", "")+".txt";

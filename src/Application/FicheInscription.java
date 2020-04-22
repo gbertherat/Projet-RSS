@@ -3,7 +3,7 @@ package Application;
 import java.time.LocalDate;
 
 /**
- * La classe FicheInscription permet de créer une fiche inscription lié à l'inscription d'un abonné à un flux.
+ * La classe FicheInscription permet de creer une fiche inscription lie a l'inscription d'un abonne a un flux.
  * @author Guillaume
  *
  */
@@ -17,7 +17,7 @@ public class FicheInscription {
 	private Flux myFlux;
 	
 	/**
-	 * Constructeur par défaut de la classe FicheInscription
+	 * Constructeur par defaut de la classe FicheInscription
 	 */
 	public FicheInscription() {
 		count++;
@@ -30,7 +30,7 @@ public class FicheInscription {
 	
 	/**
 	 * Constructeur de la classe FicheInscription
-	 * @param myAbonne - L'abonné qui s'est inscrit
+	 * @param myAbonne - L'abonne qui s'est inscrit
 	 * @param myFlux - Le flux auquel il s'est inscrit
 	 */
 	public FicheInscription(Abonne myAbonne, Flux myFlux) {
@@ -47,7 +47,7 @@ public class FicheInscription {
 	//-------------------//
 	
 	/**
-	 * Set la référence d'une fiche
+	 * Set la reference d'une fiche
 	 * @param ref
 	 */
 	public void setRef(int ref) {
@@ -55,7 +55,7 @@ public class FicheInscription {
 	}
 
 	/**
-	 * Get la référence d'une fiche
+	 * Get la reference d'une fiche
 	 * @return ref
 	 */
 	public int getRef() {
@@ -63,7 +63,7 @@ public class FicheInscription {
 	}
 	
 	/**
-	 * Set l'abonné d'une fiche
+	 * Set l'abonne d'une fiche
 	 * @param myAbonne
 	 */
 	public void setAbonne(Abonne myAbonne) {
@@ -71,7 +71,7 @@ public class FicheInscription {
 	}
 	
 	/**
-	 * Get l'abonné d'une fiche
+	 * Get l'abonne d'une fiche
 	 * @return myAbonne
 	 */
 	public Abonne getAbonne() {
@@ -79,7 +79,7 @@ public class FicheInscription {
 	}
 	
 	/**
-	 * Set la date d'inscription de l'abonné
+	 * Set la date d'inscription de l'abonne
 	 * @param date
 	 */
 	public void setDateInscription(LocalDate date) {
@@ -87,7 +87,7 @@ public class FicheInscription {
 	}
 	
 	/**
-	 * Get la date d'inscription de l'abonné
+	 * Get la date d'inscription de l'abonne
 	 * @return dateInscription
 	 */
 	public LocalDate getDateInscription() {
@@ -95,7 +95,7 @@ public class FicheInscription {
 	}
 	
 	/**
-	 * Set la date de résiliation d'un abonné
+	 * Set la date de resiliation d'un abonne
 	 * @param date
 	 */
 	public void setDateResiliation(LocalDate date) {
@@ -103,7 +103,7 @@ public class FicheInscription {
 	}
 	
 	/**
-	 * Get la date de résiliation d'un abonné
+	 * Get la date de resiliation d'un abonne
 	 * @return
 	 */
 	public LocalDate getDateResiliation() {
@@ -111,7 +111,7 @@ public class FicheInscription {
 	}
 	
 	/**
-	 * Set le flux de l'inscription d'un abonné
+	 * Set le flux de l'inscription d'un abonne
 	 * @param myFlux
 	 */
 	public void setFlux(Flux myFlux) {
@@ -119,7 +119,7 @@ public class FicheInscription {
 	}
 	
 	/**
-	 * Get le flux de l'inscription d'un abonné
+	 * Get le flux de l'inscription d'un abonne
 	 * @return myFlux
 	 */
 	public Flux getFlux() {
@@ -131,18 +131,18 @@ public class FicheInscription {
 	//-----------//
 	
 	/**
-	 * La fonction toString permet d'afficher les détails d'une fiche dans la console
+	 * La fonction toString permet d'afficher les details d'une fiche dans la console
 	 */
 	public String toString() {
-		return "Référence: " + ref +
-			   "\nAbonné: " + myAbonne.nom + " " + myAbonne.prenom +
+		return "Reference: " + ref +
+			   "\nAbonne: " + myAbonne.nom + " " + myAbonne.prenom +
 			   "\nDate d'inscription: " + dateInscription +
 			   "\nDate fin d'inscription: " + dateResiliation +
 			   "\nFlux inscrit: " + myFlux.getNom();
 	}
 	
 	/**
-	 * La fonction equals permet de comparer les détails de deux fiches.
+	 * La fonction equals permet de comparer les details de deux fiches.
 	 * @param myInsc - La fiche avec laquelle comparer
 	 * @return true si les deux fiches sont identiques, false sinon.
 	 */
