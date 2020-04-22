@@ -152,6 +152,10 @@ public class FluxFiltre extends Flux{
 		return super.equals(flux) && (dateFin == flux.dateFin); 
 	}
 	
+	/**
+	 * La fonction copyFlux permet de copier les attributs d'un autre flux
+	 * @param flux - Flux à copier
+	 */
 	public void copyFlux(Flux flux) {
 		this.nom = flux.nom;
 		this.url = flux.url;

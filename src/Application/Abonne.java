@@ -302,10 +302,15 @@ public class Abonne {
 	 * @return true si le flux a bien été sauvegardé, false sinon
 	 */
 	public boolean saveFlux(int idFlux) {
-		String filename = "flux.txt";
+		String filename = IU.listeFlux.get(idFlux).getNom().replaceAll("\\s", "")+".txt";
 	    new File(filename);
 	    try {
 			FileWriter myWriter = new FileWriter(filename);
+			for(Entry entry : IU.listeFlux.get(idFlux).getListeEntrees()) {
+				myWriter.write("Titre: " + entry.getTitre() + "\n");
+				myWriter.write("Date: " + entry.getDatePublication().toString() + "\n");
+				myWriter.write(entry.getDescription() + "\n\n");
+			}
 			myWriter.write(IU.listeFlux.get(idFlux).getRef());
 			myWriter.close();
 			return true;

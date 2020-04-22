@@ -137,7 +137,8 @@ public class FicheInscription {
 		return "Référence: " + ref +
 			   "\nAbonné: " + myAbonne.nom + " " + myAbonne.prenom +
 			   "\nDate d'inscription: " + dateInscription +
-			   "\nDate fin d'inscription: " + dateResiliation;
+			   "\nDate fin d'inscription: " + dateResiliation +
+			   "\nFlux inscrit: " + myFlux.getNom();
 	}
 	
 	/**
