@@ -135,10 +135,10 @@ public class FicheInscription {
 	 */
 	public String toString() {
 		return "Reference: " + ref +
-			   "\nAbonne: " + myAbonne.nom + " " + myAbonne.prenom +
+			   "\nAbonne: " + myAbonne.getID() +
 			   "\nDate d'inscription: " + dateInscription +
 			   "\nDate fin d'inscription: " + dateResiliation +
-			   "\nFlux inscrit: " + myFlux.getNom();
+			   "\nFlux inscrit: " + myFlux.getRef();
 	}
 	
 	/**

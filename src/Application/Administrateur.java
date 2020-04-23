@@ -13,4 +13,9 @@ public class Administrateur extends Abonne{
 	public Administrateur(String nom, String prenom, String mail, String username, String password) {
 		super(nom, prenom, mail, username, password);
 	}
+	
+	public String toString() {
+		return super.toString() 
+				+ "\nAdministrateur";
+	}
 }

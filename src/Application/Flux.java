@@ -267,12 +267,41 @@ public class Flux {
 	 * La fonction toString permet d'afficher les details d'un flux dans la console
 	 */
 	public String toString() {
-		return "Reference: " + ref +
+		StringBuffer toReturn = new StringBuffer("Reference: " + ref +
 				"\nNom: " + nom +
 				"\nUrl: " + url +
 				"\nLangue: " + langue +
 				"\nDate d'ajout: " + dateAjout +
-				"\nLocalisation: " + localisation;
+				"\nLocalisation: " + localisation);
+		
+		toReturn.append("\nListe entrées: ");
+		try {
+			for(Entry entry : listeEntrees) {
+				toReturn.append("\n" + entry.getID());
+			}
+		} catch(Exception e) {
+			;
+		}
+		
+		toReturn.append("\nListe catégories: ");
+		try {
+			for(String categorie: listeCategories) {
+				toReturn.append("\n" + categorie);
+			}
+		} catch(Exception e) {
+			;
+		}
+		
+		toReturn.append("\nListe abonnés: ");
+		try {
+			for(Abonne abonne : listeAbonnes) {
+				toReturn.append("\n" + abonne.getID());
+			}
+		} catch(Exception e) {
+			;
+		}
+
+		return toReturn.toString();
 	}
 	
 	/**

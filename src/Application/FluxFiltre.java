@@ -139,8 +139,20 @@ public class FluxFiltre extends Flux{
 	 * La fonction toString permet d'afficher les details d'un flux filtre dans la console
 	 */
 	public String toString() {
-		return super.toString() +
-			   "\nDate de fin: " + dateFin;
+		StringBuffer toReturn = new StringBuffer(super.toString() +
+			   "\nDate de fin: " + dateFin);
+		
+		toReturn.append("\nBlacklist:");
+		for(String word: blacklist) {
+			toReturn.append("\n" + word);
+		}
+		
+		toReturn.append("\nWhitelist:");
+		for(String word: whitelist) {
+			toReturn.append("\n" + word);
+		}
+		
+		return toReturn.toString();
 	}
 	
 	/**

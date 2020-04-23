@@ -186,9 +186,30 @@ public class Entry {
 	 * La fonction toString permet d'afficher les details d'une entree dans la console
 	 */
 	public String toString() {
-		return "ID: " + id +
+		StringBuffer toReturn = new StringBuffer("ID: " + id +
 			   "\nTitre: " + titre +
-			   "\nDate de publication: " + datePublication;
+			   "\nDate de publication: " + datePublication +
+			   "\nDescription: " + description);
+		
+		toReturn.append("\nListe catégories:");
+		try {
+			for(String categorie: listeCategories) {
+				toReturn.append("\n" + categorie);
+			}
+		} catch(Exception e) {
+			;
+		}
+		
+		toReturn.append("\nListe contenus");
+		try {
+			for(String contenue: listeContenus) {
+				toReturn.append("\n" + contenue);
+			}
+		} catch(Exception e) {
+			;
+		}
+		
+		return toReturn.toString();
 	}
 	
 	/**

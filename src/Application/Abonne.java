@@ -228,10 +228,32 @@ public class Abonne {
 	 * La fonction toString permet d'afficher les details d'un abonne dans la console
 	 */
 	public String toString() {
-		return "ID: " + id +
+		StringBuffer toReturn = new StringBuffer("ID: " + id +
 			   "\nNom: " + nom +
 			   "\nPrenom: " + prenom +
-			   "\nMail: " + mail;
+			   "\nMail: " + mail +
+			   "\nUsername: " + username +
+			   "\nPassword: " + password);
+		
+		toReturn.append("\nListe flux:");
+		try{
+			for(Flux flux : listeFlux) {
+				toReturn.append("\n" + flux.getRef());
+			}
+		} catch(Exception e) {
+			;
+		}
+		
+		toReturn.append("\nListe contraintes:");
+		try{
+			for(String contrainte : listeContraintes) {
+				toReturn.append("\n" + contrainte);
+			}
+		} catch(Exception e) {
+			;
+		}
+		
+		return toReturn.toString();
 	}
 	
 	
