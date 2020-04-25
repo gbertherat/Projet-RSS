@@ -592,6 +592,7 @@ public class IU {
 						newAbo = new Administrateur();
 						newAbo.copyAbo(temp);
 						newAbo.setID(newAbo.id+1);
+						Abonne.count = newAbo.id;
 						reader2.readLine();
 						temp = null;
 					}

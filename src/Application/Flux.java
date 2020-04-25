@@ -310,7 +310,9 @@ public class Flux {
  	 * @return true si les flux sont identiques, false sinon.
 	 */
 	public boolean equals(Flux myFlux) {
-		return (ref == myFlux.ref) && (nom.equals(myFlux.nom)) && (url.equals(myFlux.url)) && (langue.equals(myFlux.langue)) && (dateAjout == myFlux.dateAjout) && (localisation.equals(myFlux.localisation));
+		return (ref == myFlux.ref) && (nom.equals(myFlux.nom)) && (url.equals(myFlux.url)) 
+				&& (langue.equals(myFlux.langue)) && (dateAjout == myFlux.dateAjout) 
+				&& (localisation.equals(myFlux.localisation));
 	}
 	
 	/**
