@@ -1,9 +1,17 @@
 package Application;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Scanner;
 
 
@@ -13,6 +21,7 @@ import java.util.Scanner;
  */
 public class IU {
 	private static int idConnected = 0;
+	public static ArrayList<Entry> listeEntrees = new ArrayList<>();
 	public static ArrayList<Flux> listeFlux = new ArrayList<>();
 	public static ArrayList<Abonne> listeAbonnes = new ArrayList<>();
 	private static Scanner myScanner = new Scanner(System.in);
@@ -40,11 +49,34 @@ public class IU {
 		System.out.print("Entrez l'ID du flux:\n>> ");
 		try {
 			id = myScanner.nextInt();
-			System.out.println(listeAbonnes.get(idConnected).checkFlux(id));
+			listeFlux.get(id).retrieveEntries();
+			System.out.println(listeAbonnes.get(idConnected-1).checkFlux(id));
 		} catch (Exception e) {
 			System.out.println("Erreur.");
 		}
 		myScanner.nextLine();
+	}
+	
+	private static void creerUnFlux() {
+		if(idConnected != 0) {
+			try {
+				//String nom, String url, String langue, String localisation
+				System.out.print("\nEntrez le nom du flux: ");
+				String nom = myScanner.nextLine();
+				
+				System.out.print("\nEntrez l'url du flux: ");
+				String url = myScanner.nextLine();
+				
+				System.out.print("\nEntrez la langue du flux: ");
+				String langue = myScanner.nextLine();
+				
+				System.out.print("\nEntrez la localisation du flux: ");
+				String localisation = myScanner.nextLine();
+				listeFlux.add(new Flux(nom, url, langue, localisation));
+			} catch(Exception e) {
+				System.out.println("Erreur.");
+			}
+		}
 	}
 	
 	/**
@@ -52,49 +84,51 @@ public class IU {
 	 * @throws Exception
 	 */
 	private static void filtrerUnFlux() throws Exception {
-		int id = -1;
-		System.out.print("Entrez l'ID du flux a filtrer:\n>> ");
-		FluxFiltre flux = new FluxFiltre();
-		try {
-			id = myScanner.nextInt();
-			myScanner.nextLine();
-			flux.copyFlux(listeFlux.get(id));
-		} catch (Exception e) {
-			System.out.println("Erreur.");
-			return;
-		}
-		
-		boolean done = false;
-		String mot;
-		System.out.print("Entrez les mots a bannir:\n"
-				+ "(Entrez done quand vous avez fini)");
-		while(done == false) {
-			System.out.print("\n>> ");
-			mot = myScanner.nextLine();
-			if(mot.equals("done")) {
-				done = true;
-			} else {
-				flux.addToBlacklist(mot);
-				System.out.println("Le mot a bien ete blackliste.\n");
+		if(idConnected != 0) {
+			int id = -1;
+			System.out.print("Entrez l'ID du flux a filtrer:\n>> ");
+			FluxFiltre flux = new FluxFiltre();
+			try {
+				id = myScanner.nextInt();
+				myScanner.nextLine();
+				flux.copyFlux(listeFlux.get(id));
+			} catch (Exception e) {
+				System.out.println("Erreur.");
+				return;
 			}
-		}
-		
-		System.out.print("Entrez les mots a laisser passer uniquement:\n"
-				+ "(Entrez done quand vous avez fini)");
-		done = false;
-		while(!done) {
-			System.out.print("\n>> ");
-			mot = myScanner.nextLine();
-			if(mot.equals("done")) {
-				done = true;
-			} else {
-				flux.addToWhitelist(mot);
-				System.out.println("Le mot a bien ete whiteliste.\n");
+			
+			boolean done = false;
+			String mot;
+			System.out.print("Entrez les mots a bannir:\n"
+					+ "(Entrez done quand vous avez fini)");
+			while(done == false) {
+				System.out.print("\n>> ");
+				mot = myScanner.nextLine();
+				if(mot.equals("done")) {
+					done = true;
+				} else {
+					flux.addToBlacklist(mot);
+					System.out.println("Le mot a bien ete blackliste.\n");
+				}
 			}
+			
+			System.out.print("Entrez les mots a laisser passer uniquement:\n"
+					+ "(Entrez done quand vous avez fini)");
+			done = false;
+			while(!done) {
+				System.out.print("\n>> ");
+				mot = myScanner.nextLine();
+				if(mot.equals("done")) {
+					done = true;
+				} else {
+					flux.addToWhitelist(mot);
+					System.out.println("Le mot a bien ete whiteliste.\n");
+				}
+			}
+			flux.setNom(flux.nom + " (filtre)");
+			flux.retrieveFilteredEntries();
+			listeFlux.add(flux);
 		}
-		flux.setNom(flux.nom + " (filtre)");
-		flux.retrieveFilteredEntries();
-		listeFlux.add(flux);
 	}
 	
 	/**
@@ -131,7 +165,7 @@ public class IU {
 			if(password.equals("stop")){
 				main(null);
 			} else if(aboSel.getPassword().equals(password)) {
-				idConnected = aboSel.getID()-1;
+				idConnected = aboSel.getID();
 				done = true;
 			} else {
 				System.out.println("Mot de passe incorrecte.");
@@ -180,7 +214,7 @@ public class IU {
 	 * La fonction supprimerUnAbonne permet à un administrateur de supprimer un abonné
 	 */
 	private static void supprimerUnAbonne() {
-		if(listeAbonnes.get(idConnected).getClass().getSimpleName().equals("Administrateur")) {
+		if(listeAbonnes.get(idConnected-1).getClass().getSimpleName().equals("Administrateur")) {
 			int idSub;
 			System.out.print("Entrez l'id de l'abonne a supprimer (ou -1 pour annuler): ");
 			idSub = myScanner.nextInt();
@@ -206,7 +240,7 @@ public class IU {
 	 * La fonction supprimerUnFlux permet à un administrateur de supprimer un flux
 	 */
 	private static void supprimerUnFlux() {
-		if(listeAbonnes.get(idConnected).getClass().getSimpleName().equals("Administrateur")) {
+		if(listeAbonnes.get(idConnected-1).getClass().getSimpleName().equals("Administrateur")) {
 			int idFlux;
 			System.out.print("Entrez l'id du flux a supprimer (ou -1 pour annuler): ");
 			idFlux = myScanner.nextInt();
@@ -246,7 +280,7 @@ public class IU {
 				return;
 			} else {
 				try {
-					if(listeAbonnes.get(idConnected).subToFlux(idFlux)) {
+					if(listeAbonnes.get(idConnected-1).subToFlux(idFlux)) {
 						System.out.println("Abonnement enregistre.");
 					} else {
 						System.out.println("Erreur lors de l'abonnement.");
@@ -277,7 +311,7 @@ public class IU {
 				return;
 			} else {
 				try {
-					if(listeAbonnes.get(idConnected).unsubFromFlux(idFlux)) {
+					if(listeAbonnes.get(idConnected-1).unsubFromFlux(idFlux)) {
 						System.out.println("Desabonnement enregistre.");
 					} else {
 						System.out.println("Erreur lors de l'abonnement.");
@@ -308,7 +342,7 @@ public class IU {
 				return;
 			} else {
 				try {
-					if(listeAbonnes.get(idConnected).saveFlux(idFlux)) {
+					if(listeAbonnes.get(idConnected-1).saveFlux(idFlux)) {
 						System.out.println("Le flux a bien ete telecharge!");
 					} else {
 						System.out.println("Erreur lors du telechargement");
@@ -321,24 +355,44 @@ public class IU {
 		}
 	}
 	
+	/**
+	 * La fonction save_all permet de sauvegarder tous objets des classes dans des fichiers
+	 */
 	private static void save_all() {
+		String entryFile = "listeEntrées.txt";
+		new File(entryFile);
+		
 		String fluxFile = "listeFlux.txt";
 	    new File(fluxFile);
 	    
 	    String abonneFile = "listeAbonnes.txt";
 	    new File(abonneFile);
 	    try {
-			FileWriter myWriter = new FileWriter(fluxFile);
-			for(Flux flux : listeFlux) {
-				myWriter.write("\n" + flux.toString());
+	    	// Liste entrées
+	    	FileWriter myWriter = new FileWriter(entryFile);
+	    	for(Flux flux : listeFlux) {
+	    		for(Entry entry : flux.getListeEntrees()) {
+	    			myWriter.write("\n" + entry.toString());
+	    		}
 			}
 			myWriter.close();
-			
-			FileWriter myWriter1 = new FileWriter(abonneFile);
-			for(Abonne abonne : listeAbonnes) {
-				myWriter1.write("\n" + abonne.toString());
+	    	
+	    	// Liste flux
+			FileWriter myWriter1 = new FileWriter(fluxFile);
+			for(Flux flux : listeFlux) {
+				myWriter1.write("\n" + flux.toString());
 			}
 			myWriter1.close();
+
+			// Liste abonnés
+			FileWriter myWriter2 = new FileWriter(abonneFile);
+			for(Abonne abonne : listeAbonnes) {
+				myWriter2.write("\n" + abonne.toString());
+				if(abonne.getClass().getSimpleName().equals("Administrateur")) {
+					myWriter2.write("\nAdministrateur");
+				}
+			}
+			myWriter2.close();
 			
 			
 		} catch (IOException e) {
@@ -348,21 +402,229 @@ public class IU {
 	}
 	
 	/**
+	 * La fonction get_all permet de récupérer les objets des fichiers de sauvegarde.
+	 * @throws IOException 
+	 * @throws ParseException 
+	 */
+	private static void get_all(){
+		// Entrées
+		ArrayList<String> listeCategorie = new ArrayList<>();
+		ArrayList<String> listeContent = new ArrayList<>();
+		
+		// Flux
+		ArrayList<Entry> listeEntrees = new ArrayList<>();
+		ArrayList<String> flux_listeCategories = new ArrayList<>();
+		
+		// Abonnés
+		ArrayList<Flux> listeFlux = new ArrayList<>();
+		ArrayList<String> listeContraintes = new ArrayList<>();
+		
+		BufferedReader reader;
+		BufferedReader reader1;
+		BufferedReader reader2;
+		try {
+			String line;
+			Entry newEntry = null;
+			Flux newFlux = null;
+			Abonne newAbo = null;
+			Flux getFlux = null;
+			SimpleDateFormat format = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy",Locale.ENGLISH);
+			
+			// Entrées
+			reader = new BufferedReader(new FileReader("listeEntrées.txt"));
+			line = reader.readLine();
+			while(line != null) {
+				// Entrées
+				int id = -1;
+				String titre = "";
+				Date date = null;
+				String description = "";		
+				
+				if(line.contains("ID:")) {
+					newEntry = new Entry();
+					id = Integer.parseInt(line.substring(4, line.length()));
+					newEntry.setID(id);
+				} else if(line.contains("Titre:")) {
+					titre = line.substring(7, line.length());
+					newEntry.setTitre(titre);
+				} else if(line.contains("Date de publication:")) {
+					date = format.parse(line.substring(21, line.length()));
+					newEntry.setDatePublication(date);
+				} else if(line.contains("Description:")) {
+					description = line.substring(13, line.length());
+					newEntry.setDescription(description);
+				}
+				
+				if(line.contains("Liste catégories:")) {
+					line = reader.readLine();
+					while(!line.contains("Liste contenus")) {
+						listeCategorie.add(line);
+						line = reader.readLine();
+					}
+					newEntry.setListeCategories(listeCategorie);
+				} 
+				
+				
+				if(line.contains("Liste contenus")) {
+					line = reader.readLine();
+					while(!line.contains("ID:")) {
+						listeContent.add(line);
+						line = reader.readLine();
+					}
+					newEntry.setListeContenu(listeContent);
+					IU.listeEntrees.add(newEntry);
+				}
+				line = reader.readLine();
+			}
+			reader.close();
+			
+			
+			// Flux
+			reader1 = new BufferedReader(new FileReader("listeFlux.txt"));
+			line = reader1.readLine();
+			line = reader1.readLine();
+			while(line != null) {
+				// Flux
+				int ref = -1;
+				String flux_nom = "";
+				String url = "";
+				String langue = "";
+				LocalDate dateFlux = null;
+				String localisation = "";
+				
+				if(line.contains("Reference:")) {
+					newFlux = new Flux();
+					ref = Integer.parseInt(line.substring(11, line.length()));
+					newFlux.setRef(ref);
+				} else if(line.contains("Nom:")) {
+					flux_nom = line.substring(5, line.length());
+					newFlux.setNom(flux_nom);
+				} else if(line.contains("Url:")) {
+					url = line.substring(5, line.length());
+					newFlux.setUrl(url);
+				} else if(line.contains("Langue:")) {
+					langue = line.substring(8, line.length());
+					newFlux.setLangue(langue);
+				} else if(line.contains("Date d'ajout:")) {
+					dateFlux = LocalDate.parse(line.substring(14, line.length()));
+					newFlux.setDateAjout(dateFlux);
+				} else if(line.contains("Localisation:")) {
+					localisation = line.substring(14, line.length());
+					newFlux.setLocalisation(localisation);
+				} 
+				
+				if(line.contains("Liste entrées:")) {
+					line = reader1.readLine();
+					while(!line.contains("Liste catégories:")) {
+						listeEntrees.add(IU.listeEntrees.get(Integer.parseInt(line)));
+						line = reader1.readLine();
+						System.out.println(line);
+					}
+					newFlux.setListeEntrees(listeEntrees);
+				}
+				
+				if(line.contains("Liste catégories:")) {
+					line = reader1.readLine();
+					while(!line.contains("Liste abonnés:")) {
+						flux_listeCategories.add(line);
+						line = reader1.readLine();
+					}
+					newFlux.setListeCategories(flux_listeCategories);
+					IU.listeFlux.add(newFlux);
+					newFlux = null;
+				}
+				line = reader1.readLine();
+			}
+			reader1.close();
+			
+			// Abonnés
+			reader2 = new BufferedReader(new FileReader("listeAbonnes.txt"));
+			line = reader2.readLine();
+			line = reader2.readLine();
+			while(line != null) {
+				// Abonnés
+				int aboID = -1;
+				String nom = "";
+				String prenom = "";
+				String mail = "";
+				String username = "";
+				String password = "";
+				
+				if(line.contains("ID:")) {
+					newAbo = new Abonne();
+					aboID = Integer.parseInt(line.substring(4));
+					newAbo.setID(aboID);
+				} else if(line.contains("Nom:")) {
+					nom = line.substring(5);
+					newAbo.setNom(nom);
+				} else if(line.contains("Prenom:")) {
+					prenom = line.substring(8);
+					newAbo.setPrenom(prenom);
+				} else if(line.contains("Mail:")) {
+					mail = line.substring(6);
+					newAbo.setMail(mail);
+				} else if(line.contains("Username:")) {
+					username = line.substring(10);
+					newAbo.setUsername(username);
+				} else if(line.contains("Password:")) {
+					password = line.substring(10);
+					newAbo.setPassword(password);
+				}
+				
+				if(line.contains("Liste flux:")) {
+					line = reader2.readLine();
+					while(!line.contains("Liste contraintes:")) {
+						getFlux = IU.listeFlux.get(Integer.parseInt(line));
+						listeFlux.add(getFlux);
+						getFlux.addAbonne(newAbo);
+						line = reader2.readLine();
+					}
+					newAbo.setListeFlux(listeFlux);			
+				}
+				
+				if(line.contains("Liste contraintes:")) {
+					line = reader2.readLine();
+					while(!line.contains("Administrateur") && !line.contains("ID:")) {
+						listeContraintes.add(line);
+						line = reader2.readLine();	
+					}
+					if(line.contains("Administrateur")) {
+						Abonne temp = new Abonne();
+						temp.copyAbo(newAbo);
+						newAbo = new Administrateur();
+						newAbo.copyAbo(temp);
+						newAbo.setID(newAbo.id+1);
+						reader2.readLine();
+						temp = null;
+					}
+					IU.listeAbonnes.add(newAbo);
+					newAbo = null;
+					
+					if(line.contains("ID:")) {
+						newAbo = new Abonne();
+						aboID = Integer.parseInt(line.substring(4));
+						newAbo.setID(aboID-1);
+					}
+				}
+				line = reader2.readLine();
+			}
+			reader2.close();
+		} catch(Exception e) {
+			;
+		}
+	}
+	
+	/**
 	 * La fonction main contient toute l'interface utilisateur
 	 * @param args - Inutile
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		Flux myFlux = new Flux("Science Daily", "https://www.sciencedaily.com/rss/all.xml", "Anglais", "");
-		myFlux.retrieveEntries();
-		listeFlux.add(myFlux);
-		
-		Abonne guest = new Abonne();
-		guest.setNom("guest");
-		listeAbonnes.add(guest);
-		
-		Administrateur admin = new Administrateur("admin", "", "", "admin", "admin");
-		listeAbonnes.add(admin);
+		boolean retrieved = false;
+		if(!retrieved) {
+			get_all();
+			retrieved = true;
+		}
 		
 		while(true) {
 			int choix = 0;
@@ -370,26 +632,27 @@ public class IU {
 			System.out.print("Que souhaitez-vous faire?\n"
 					+ "1) Voir la liste des flux\n"
 					+ "2) Voir les details d'un flux\n"
-					+ "3) Voir les entrees d'un flux\n"
-					+ "4) Filtrer un flux\n");
+					+ "3) Voir les entrees d'un flux\n");
 			if(idConnected != 0) { // Options si l'utilisateur est connecte
-				System.out.print("7) S'abonner a un flux\n"
-						+ "8) Se desabonner d'un flux\n"
-						+ "9) Telecharger un flux\n"
-						+ "10) Voir les informations de mon compte\n"
-						+ "11) Voir les flux auxquels je suis abonne\n"
-						+ "12) Se deconnecter\n");
-				if(listeAbonnes.get(idConnected).getClass().getSimpleName().equals("Administrateur")) { // Options si l'utilisateur connecte est un administrateur
-					System.out.print("13) Voir la liste des utilisateurs\n"
-							+ "14) Supprimer un utilisateur\n"
-							+ "15) Supprimer un flux\n"
-							+ "16) Ajouter une contrainte a un utilisateur\n");
+				System.out.print("6) Créer un flux\n"
+						+ "7) Filtrer un flux\n"
+						+ "8) S'abonner a un flux\n"
+						+ "9) Se desabonner d'un flux\n"
+						+ "10) Telecharger un flux\n"
+						+ "11) Voir les informations de mon compte\n"
+						+ "12) Voir les flux auxquels je suis abonne\n"
+						+ "13) Se deconnecter\n");
+				if(listeAbonnes.get(idConnected-1).getClass().getSimpleName().equals("Administrateur")) { // Options si l'utilisateur connecte est un administrateur
+					System.out.print("14) Voir la liste des utilisateurs\n"
+							+ "15) Supprimer un utilisateur\n"
+							+ "16) Supprimer un flux\n"
+							+ "17) Ajouter une contrainte a un utilisateur\n");
 				}
 			} else { // Options si l'utilisateur n'est pas connecte
-				System.out.print("5) Se connecter\n"
-						+ "6) S'inscrire\n");
+				System.out.print("4) Se connecter\n"
+						+ "5) S'inscrire\n");
 			}
-			System.out.print("17) Annuler\n"
+			System.out.print("18) Annuler\n"
 					+ ">> ");
 			
 			try {
@@ -398,7 +661,7 @@ public class IU {
 				System.out.println("Erreur.");
 			}
 			
-			if(choix == 17) {
+			if(choix == 18) {
 				break;
 			}
 			
@@ -422,72 +685,81 @@ public class IU {
 					voirEntrees();
 					break;
 				}
-				case 4:{ // Filtrer un flux
-					filtrerUnFlux();
-					break;
-				} // Se connecter
-				case 5:{
+				case 4:{ // Se connecter
 					seConnecter();
 					break;
 				}
-				case 6:{ // S'inscrire
+				case 5:{ // S'inscrire
 					inscription();
+					save_all();
 					break;
 				}
-				
+				case 6:{ // Créer un flux
+					creerUnFlux();
+					save_all();
+					break;
+				}
+				case 7:{ // Filtrer un flux
+					filtrerUnFlux();
+					save_all();
+					break;
+				}
 				// Options si l'utilisateur est connecte
-				case 7:{ // S'abonner a un flux
+				case 8:{ // S'abonner a un flux
 					subToFlux();
+					save_all();
 					break;
 				}
-				case 8:{ // Se desabonner d'un flux
+				case 9:{ // Se desabonner d'un flux
 					unsubFromFlux();
+					save_all();
 					break;
 				}
-				case 9:{ // Telecharger un flux
+				case 10:{ // Telecharger un flux
 					telechargerUnFlux();
 					break;
 				}
-				case 10:{ // Voir les details du compte
+				case 11:{ // Voir les details du compte
 					if(idConnected != 0) {
-						System.out.println(listeAbonnes.get(idConnected));
+						System.out.println(listeAbonnes.get(idConnected-1));
 					}
 					break;
 				}
-				case 11:{ // Voir la liste des flux auxquels l'utilisateur est abonne
+				case 12:{ // Voir la liste des flux auxquels l'utilisateur est abonne
 					if(idConnected != 0) {
-						for(Flux flux: listeAbonnes.get(idConnected).getListeFlux()) {
+						for(Flux flux: listeAbonnes.get(idConnected-1).getListeFlux()) {
 							System.out.println(flux.getRef() + ") " + flux.getNom());
 						}
 					}
 					break;
 				} 
-				case 12:{ // Se deconnecter
+				case 13:{ // Se deconnecter
 					idConnected = 0;
 					break;
 				}
 				
 				// Si l'utilisateur connecte est un administrateur
-				case 13:{ // Voir la liste des abonnes
-					if(listeAbonnes.get(idConnected).getClass().getSimpleName().equals("Administrateur")) {
+				case 14:{ // Voir la liste des abonnes
+					if(listeAbonnes.get(idConnected-1).getClass().getSimpleName().equals("Administrateur")) {
 						for(Abonne abonne : listeAbonnes) {
 							System.out.println(abonne.getID() + ") " + abonne.getNom() + " " + abonne.getPrenom());
 						}
 					}
 					break;
 				}
-				case 14:{ // Supprimer un abonne
+				case 15:{ // Supprimer un abonne
 					supprimerUnAbonne();
+					save_all();
 					break;
 				}
-				case 15:{ // Supprimer un flux
+				case 16:{ // Supprimer un flux
 					supprimerUnFlux();
+					save_all();
 					break;
 				}
 			}
 			
 			System.out.println("");
-			save_all();
 		}
 		myScanner.close();
 	}

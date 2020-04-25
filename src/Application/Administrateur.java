@@ -18,4 +18,13 @@ public class Administrateur extends Abonne{
 		return super.toString() 
 				+ "\nAdministrateur";
 	}
+	
+	public void copyAbo(Abonne myAbo) {
+		id = myAbo.id;
+		nom = myAbo.nom;
+		prenom = myAbo.prenom;
+		mail = myAbo.mail;
+		username = myAbo.username;
+		password = myAbo.password;
+	}
 }

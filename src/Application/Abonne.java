@@ -266,6 +266,15 @@ public class Abonne {
 		return (id == myAbonne.id) && (nom.equals(myAbonne.nom)) && (prenom.equals(myAbonne.prenom)) && (mail.equals(myAbonne.mail));
 	}
 	
+	public void copyAbo(Abonne myAbo) {
+		id = myAbo.id;
+		nom = myAbo.nom;
+		prenom = myAbo.prenom;
+		mail = myAbo.mail;
+		username = myAbo.username;
+		password = myAbo.password;
+	}
+	
 	/**
 	 * La fonction subToFlux permet a un abonne de s'abonner a un flux grâce a l'ID du flux.
 	 * @param refFlux L'ID du Flux

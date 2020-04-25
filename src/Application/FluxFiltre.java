@@ -169,6 +169,7 @@ public class FluxFiltre extends Flux{
 	 * @param flux - Flux a copier
 	 */
 	public void copyFlux(Flux flux) {
+		this.ref = flux.ref;
 		this.nom = flux.nom;
 		this.url = flux.url;
 		this.langue = flux.langue;
