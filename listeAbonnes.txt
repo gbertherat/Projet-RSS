@@ -16,8 +16,15 @@ Password: admin
 Liste flux:
 Liste contraintes:
 Administrateur
-Administrateur
 ID: 3
+Nom: motzen
+Prenom: motzen
+Mail: motzen
+Username: motzen
+Password: motzen
+Liste flux:
+Liste contraintes:
+ID: 4
 Nom: 1
 Prenom: 1
 Mail: 1

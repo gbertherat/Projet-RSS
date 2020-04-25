@@ -143,7 +143,7 @@ public class IU {
 		while(!done) {
 			System.out.print("\n('Stop' pour annuler) Nom d'utilisateur: ");
 			username = myScanner.nextLine();
-			if(username.equals("stop")){
+			if(username.equals("stop") || username.equals("none")){
 				main(null);
 			} else {
 				for(Abonne myAbo : listeAbonnes) {
@@ -388,10 +388,8 @@ public class IU {
 			FileWriter myWriter2 = new FileWriter(abonneFile);
 			for(Abonne abonne : listeAbonnes) {
 				myWriter2.write("\n" + abonne.toString());
-				if(abonne.getClass().getSimpleName().equals("Administrateur")) {
-					myWriter2.write("\nAdministrateur");
-				}
 			}
+			myWriter2.write("\n");
 			myWriter2.close();
 			
 			
@@ -403,8 +401,10 @@ public class IU {
 	
 	/**
 	 * La fonction get_all permet de récupérer les objets des fichiers de sauvegarde.
+	 * @throws IOException 
+	 * @throws ParseException 
 	 */
-	private static void get_all(){
+	private static void get_all() throws IOException, ParseException{
 		// Entrées
 		ArrayList<String> listeCategorie = new ArrayList<>();
 		ArrayList<String> listeContent = new ArrayList<>();
@@ -420,7 +420,6 @@ public class IU {
 		BufferedReader reader;
 		BufferedReader reader1;
 		BufferedReader reader2;
-		try {
 			String line;
 			Entry newEntry = null;
 			Flux newFlux = null;
@@ -538,7 +537,6 @@ public class IU {
 			// Abonnés
 			reader2 = new BufferedReader(new FileReader("listeAbonnes.txt"));
 			line = reader2.readLine();
-			line = reader2.readLine();
 			while(line != null) {
 				// Abonnés
 				int aboID = -1;
@@ -547,11 +545,11 @@ public class IU {
 				String mail = "";
 				String username = "";
 				String password = "";
-				
 				if(line.contains("ID:")) {
 					newAbo = new Abonne();
 					aboID = Integer.parseInt(line.substring(4));
 					newAbo.setID(aboID);
+					Abonne.count = newAbo.id;
 				} else if(line.contains("Nom:")) {
 					nom = line.substring(5);
 					newAbo.setNom(nom);
@@ -582,35 +580,36 @@ public class IU {
 				
 				if(line.contains("Liste contraintes:")) {
 					line = reader2.readLine();
-					while(!line.contains("Administrateur") && !line.contains("ID:")) {
-						listeContraintes.add(line);
-						line = reader2.readLine();	
+					if(line != null) {
+						while(!line.contains("Administrateur") && !line.contains("ID:")) {
+							listeContraintes.add(line);
+							line = reader2.readLine();	
+						}
+						if(line.contains("Administrateur")) {
+							Abonne temp = new Abonne();
+							temp.copyAbo(newAbo);
+							newAbo = new Administrateur();
+							newAbo.copyAbo(temp);
+							newAbo.setID(newAbo.id+1);
+							Abonne.count = newAbo.id;
+							temp = null;
+						}
 					}
-					if(line.contains("Administrateur")) {
-						Abonne temp = new Abonne();
-						temp.copyAbo(newAbo);
-						newAbo = new Administrateur();
-						newAbo.copyAbo(temp);
-						newAbo.setID(newAbo.id+1);
-						Abonne.count = newAbo.id;
-						reader2.readLine();
-						temp = null;
-					}
-					IU.listeAbonnes.add(newAbo);
-					newAbo = null;
-					
-					if(line.contains("ID:")) {
-						newAbo = new Abonne();
-						aboID = Integer.parseInt(line.substring(4));
-						newAbo.setID(aboID-1);
+						System.out.println(newAbo+"\n\n");
+						IU.listeAbonnes.add(newAbo);
+						newAbo = null;
+					if(line != null) {
+						if(line.contains("ID:")) {
+							newAbo = new Abonne();
+							aboID = Integer.parseInt(line.substring(4));
+							newAbo.setID(aboID-1);
+							Abonne.count = newAbo.id;
+						}
 					}
 				}
 				line = reader2.readLine();
 			}
 			reader2.close();
-		} catch(Exception e) {
-			;
-		}
 	}
 	
 	/**
