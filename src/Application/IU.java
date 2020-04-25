@@ -403,8 +403,6 @@ public class IU {
 	
 	/**
 	 * La fonction get_all permet de récupérer les objets des fichiers de sauvegarde.
-	 * @throws IOException 
-	 * @throws ParseException 
 	 */
 	private static void get_all(){
 		// Entrées

@@ -1,0 +1,19 @@
+
+ID: 1
+Nom: guest
+Prenom: guestASZ
+Mail: none
+Username: none
+Password: none
+Liste flux:
+Liste contraintes:
+ID: 2
+Nom: admin
+Prenom: yolo
+Mail: none
+Username: admin
+Password: admin1
+Liste flux:
+Liste contraintes:
+Administrateur
+Administrateur

@@ -1,1 +1,1 @@
-typeSearchIndex = [{"p":"Application","l":"Abonne"},{"p":"Application","l":"Administrateur"},{"l":"All Classes","url":"allclasses-index.html"},{"p":"Application","l":"AppAtom"},{"p":"Application","l":"Entry"},{"p":"Application","l":"FicheInscription"},{"p":"Application","l":"Flux"},{"p":"Application","l":"FluxFiltre"},{"p":"Application","l":"IU"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"Application","l":"IU"}]
